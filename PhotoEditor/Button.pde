@@ -1,15 +1,15 @@
 import processing.core.PImage;
 public class Button {
   PImage icon;
-  private int width, height;
+  private int w, h;
   private boolean active;
   private String name;
   private char keybind;
 
   public Button(String iconPath, int w, int h, String n, char bind) {
     icon = loadImage(iconPath);
-    width = w;
-    height = h;
+    this.w = w;
+    this.h = h;
     name = n;
     keybind = bind;
   }
