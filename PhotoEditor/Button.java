@@ -18,22 +18,21 @@ public class Button {
     height = h;
     name = n;
     keybind = bind;
-
   }
 
   public void clicked() {
-
+    active = !active;
   }
   public boolean isToggled() {
-
+    return active;
   }
   public PImage display() {
-
+    return icon;
   }
   public String getName() {
-
+    return name;
   }
   public char getKeybind() {
-
+    return keybind;
   }
 }
