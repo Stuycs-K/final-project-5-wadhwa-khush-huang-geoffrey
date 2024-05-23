@@ -1,3 +1,4 @@
+import com.krab.lazy.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.io.File;
@@ -8,6 +9,7 @@ import java.nio.file.StandardCopyOption;
  //private String userInput;
  private PImage current;
  private PImage withTempChanges;
+ LazyGui gui;
  //private ArrayList<String> allModes;
  //private int currentMode;
  //private ArrayList<Kernel> kernels;
@@ -16,9 +18,11 @@ import java.nio.file.StandardCopyOption;
  //private color selectedColor;
 
 void setup() {
-  size(1200, 675);
+  size(1200, 675, P2D);
+  gui = new LazyGui(this);
 }
 void draw() {
+  float exposure = gui.sliderInt("exposure", 7);
 }
 
 void keyPressed() {
@@ -36,4 +40,5 @@ void open(String imgPath) {
     catch(IOException e) {}
     current = loadImage(i.getName());
     withTempChanges = current;
+    
 }
