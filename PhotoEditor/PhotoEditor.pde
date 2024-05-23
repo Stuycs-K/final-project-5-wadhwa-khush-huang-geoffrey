@@ -17,6 +17,8 @@ import java.nio.file.StandardCopyOption;
 
 void setup() {
   size(1200, 675);
+  open("test.jpeg");
+
 }
 void draw() {
 }
@@ -33,7 +35,12 @@ void open(String imgPath) {
     try {
       target = Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING).toString();
     }
-    catch(IOException e) {}
+    catch(IOException e) {
+      String errorMessage = "Error: File not found. Use the absolute filepath if necessary.";
+      fill(0);
+      textSize(128);
+      text(errorMessage, 0, 0);
+    }
     current = loadImage(i.getName());
     withTempChanges = current;
 }
