@@ -4,10 +4,14 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import com.krab.lazy.*;
  //TO BE IMPLEMENTED IN APPROPRIATE STAGES
  //private String userInput;
  private PImage current;
  private PImage withTempChanges;
+ LazyGui gui;
+ float max = 10;
+ float min = 0;
  //private ArrayList<String> allModes;
  //private int currentMode;
  //private ArrayList<Kernel> kernels;
@@ -16,9 +20,14 @@ import java.nio.file.StandardCopyOption;
  //private color selectedColor;
 
 void setup() {
-  size(1200, 675);
+  size(1200, 675, P2D);
+  gui = new LazyGui(this);
 }
 void draw() {
+  float x = gui.slider("exposure", min);
+  float y = gui.slider("darkness", min);
+  float z = gui.slider("outline", min);
+  background(gui.colorPicker("background").hex);
 }
 
 void keyPressed() {
