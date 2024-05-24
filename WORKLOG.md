@@ -6,9 +6,9 @@
 
 Initialized directories and created base Java/Processing files. Designed the fields, constructors, and methods for the Button class. Added Button icons to the data folder. Created basic setup() method and added all relevant fields to the PhotoEditor (main) class.
 
-### date y
+### 05/23/2024
 
-info
+Worked on applying toggles from the LazyGUI package and searched for mathematical applications of different Kernels (beginning with the Gaussian blur).
 
 
 ## GROUP MEMBER 2

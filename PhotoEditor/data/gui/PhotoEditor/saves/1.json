@@ -806,17 +806,21 @@
           "className": "FolderNode",
           "path": "saves/autosave rules",
           "type": "FOLDER"
+<<<<<<< HEAD
         },
         {
           "className": "SaveItemNode",
           "path": "saves/auto",
           "type": "TRANSIENT"
+=======
+>>>>>>> slider
         }
       ],
       "window": {},
       "className": "SaveFolderNode",
       "path": "saves",
       "type": "FOLDER"
+<<<<<<< HEAD
     },
     {
       "valueFloat": 10.0,
@@ -892,6 +896,8 @@
       "className": "ColorPickerFolderNode",
       "path": "background",
       "type": "FOLDER"
+=======
+>>>>>>> slider
     }
   ],
   "window": {},

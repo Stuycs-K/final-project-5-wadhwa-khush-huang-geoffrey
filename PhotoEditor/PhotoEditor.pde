@@ -1,3 +1,4 @@
+import com.krab.lazy.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.io.File;
@@ -28,6 +29,9 @@ void draw() {
   float y = gui.slider("darkness", min);
   float z = gui.slider("outline", min);
   background(gui.colorPicker("background").hex);
+  float exposure = gui.sliderInt("exposure", 7);
+  boolean exposureMode = gui.toggle("Exposure");
+  //we need to set these to be global variables, maybe in an ArrayList?
 }
 
 void keyPressed() {
@@ -45,4 +49,5 @@ void open(String imgPath) {
     catch(IOException e) {}
     current = loadImage(i.getName());
     withTempChanges = current;
+    
 }
