@@ -23,6 +23,8 @@ void setup() {
 }
 void draw() {
   float exposure = gui.sliderInt("exposure", 7);
+  boolean exposureMode = gui.toggle("Exposure");
+  //we need to set these to be global variables, maybe in an ArrayList?
 }
 
 void keyPressed() {
