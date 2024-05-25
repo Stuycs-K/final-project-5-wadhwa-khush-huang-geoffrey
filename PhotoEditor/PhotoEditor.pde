@@ -53,15 +53,9 @@ void draw() {
   }); // affects exposure
   Kernel exp2 = new Kernel( new float[][] {
       {0, -1, 0},
-      {-1, 5, -1},
+      {0, 3, 0},
       {0, -1, 0}
   });
-  
-    for (int i = 0; i < 3; i++){
-      for (int j = 0; j < 3; j++){
-        exp2.calc2(exposure);
-      }
-    }
   
   exp2.apply(img);
 }
