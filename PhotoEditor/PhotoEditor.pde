@@ -29,7 +29,7 @@ void draw() {
   float y = gui.slider("darkness", min);
   float z = gui.slider("outline", min);
   background(gui.colorPicker("background").hex);
-  float exposure = gui.sliderInt("exposure", 7);
+  //float exposure = gui.sliderInt("exposure", 7);
   boolean exposureMode = gui.toggle("Exposure");
   //we need to set these to be global variables, maybe in an ArrayList?
 }

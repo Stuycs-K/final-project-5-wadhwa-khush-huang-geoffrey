@@ -689,21 +689,13 @@
               "type": "VALUE"
             },
             {
-<<<<<<< HEAD
               "valueBoolean": true,
-=======
-              "valueBoolean": false,
->>>>>>> slider
               "className": "ToggleNode",
               "path": "options/hotkeys/ctrl + s: new save",
               "type": "VALUE"
             },
             {
-<<<<<<< HEAD
               "valueBoolean": true,
-=======
-              "valueBoolean": false,
->>>>>>> slider
               "className": "ToggleNode",
               "path": "options/hotkeys/mouse wheel",
               "type": "VALUE"
@@ -759,10 +751,6 @@
           "type": "FOLDER"
         }
       ],
-<<<<<<< HEAD
-      "window": {},
-=======
->>>>>>> slider
       "className": "FolderNode",
       "path": "options",
       "type": "FOLDER"
@@ -820,60 +808,40 @@
         },
         {
           "className": "SaveItemNode",
-          "path": "saves/1",
-          "type": "TRANSIENT"
-        },
-        {
-          "className": "SaveItemNode",
-<<<<<<< HEAD
-=======
-          "path": "saves/2",
-          "type": "TRANSIENT"
-        },
-        {
-          "className": "SaveItemNode",
-          "path": "saves/3",
-          "type": "TRANSIENT"
-        },
-        {
-          "className": "SaveItemNode",
->>>>>>> slider
           "path": "saves/auto",
           "type": "TRANSIENT"
         }
       ],
-      "window": {},
       "className": "SaveFolderNode",
       "path": "saves",
       "type": "FOLDER"
     },
     {
-<<<<<<< HEAD
-      "valueFloat": 10.0,
-      "currentPrecisionIndex": 4,
-      "valueFloatPrecision": 1.0,
+      "valueFloat": -0.5999994,
+      "currentPrecisionIndex": 3,
+      "valueFloatPrecision": 0.1,
       "className": "SliderNode",
       "path": "exposure",
       "type": "VALUE"
     },
     {
-      "valueFloat": 46.0,
-      "currentPrecisionIndex": 4,
-      "valueFloatPrecision": 1.0,
+      "valueFloat": 0.0,
+      "currentPrecisionIndex": 3,
+      "valueFloatPrecision": 0.1,
       "className": "SliderNode",
       "path": "darkness",
       "type": "VALUE"
     },
     {
-      "valueFloat": 10.0,
-      "currentPrecisionIndex": 4,
-      "valueFloatPrecision": 1.0,
+      "valueFloat": 0.0,
+      "currentPrecisionIndex": 3,
+      "valueFloatPrecision": 0.1,
       "className": "SliderNode",
       "path": "outline",
       "type": "VALUE"
     },
     {
-      "hexString": "AD53FCB5",
+      "hexString": "FF2FB58C",
       "children": [
         {
           "className": "ColorPreviewNode",
@@ -881,7 +849,7 @@
           "type": "TRANSIENT"
         },
         {
-          "valueFloat": 0.4299998,
+          "valueFloat": 0.45000008,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "HueNode",
@@ -889,7 +857,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.66999996,
+          "valueFloat": 0.74000025,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "SaturationNode",
@@ -897,7 +865,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.99,
+          "valueFloat": 0.7099999,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "BrightnessNode",
@@ -905,7 +873,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.6799998,
+          "valueFloat": 1.0,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "AlphaNode",
@@ -922,14 +890,12 @@
       "className": "ColorPickerFolderNode",
       "path": "background",
       "type": "FOLDER"
-=======
-      "valueFloat": -1.0,
-      "currentPrecisionIndex": 4,
-      "valueFloatPrecision": 1.0,
-      "className": "SliderIntNode",
-      "path": "exposure",
+    },
+    {
+      "valueBoolean": true,
+      "className": "ToggleNode",
+      "path": "Exposure",
       "type": "VALUE"
->>>>>>> slider
     }
   ],
   "window": {},
