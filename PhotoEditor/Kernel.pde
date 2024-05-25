@@ -4,7 +4,13 @@ public class Kernel{
   public Kernel(float[][]init) {
     kernel = init;
   }
-  
+  void calc2(float value){
+    for (int i = 0; i < 3; i++){
+      for (int j = 0; j < 3; j++){
+        kernel[i][j] *= value;
+      }
+    }
+  }
   color calcNewColor(PImage img, int x, int y) {
    float r = 0;
    float g = 0;
@@ -44,10 +50,10 @@ public class Kernel{
    return c;
  }
  
- void apply(PImage source, PImage destination){
+ void apply(PImage source){
     for (int col = 0; col < source.width; col++){
       for (int row = 0; row < source.height; row++){
-        destination.set(col, row, calcNewColor(source, col, row));
+        source.set(col, row, calcNewColor(source, col, row));
       }
     }
   }

@@ -817,7 +817,7 @@
       "type": "FOLDER"
     },
     {
-      "valueFloat": 7.4505806E-8,
+      "valueFloat": 0.9,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",

@@ -30,7 +30,6 @@ void setup() {
   //kernels
   
   
-  
 }
 void draw() {
   float exposure = gui.slider("exposure", start, min, max);
@@ -42,6 +41,29 @@ void draw() {
   //we need to set these to be global variables, maybe in an ArrayList?
   image(img, 200, 200);
   
+  Kernel standard = new Kernel( new float[][] {
+      {0, 0, 0},
+      {0, 1, 0},
+      {0, 0, 0}
+  }); // unedited
+  Kernel exp = new Kernel( new float[][] {
+      {0, -1, 0},
+      {-1, 5, -1},
+      {0, -1, 0}
+  }); // affects exposure
+  Kernel exp2 = new Kernel( new float[][] {
+      {0, -1, 0},
+      {-1, 5, -1},
+      {0, -1, 0}
+  });
+  
+    for (int i = 0; i < 3; i++){
+      for (int j = 0; j < 3; j++){
+        exp2.calc2(exposure);
+      }
+    }
+  
+  exp2.apply(img);
 }
 
 void keyPressed() {
