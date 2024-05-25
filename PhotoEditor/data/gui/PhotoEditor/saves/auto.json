@@ -817,7 +817,7 @@
       "type": "FOLDER"
     },
     {
-      "valueFloat": -0.5999994,
+      "valueFloat": 7.4505806E-8,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",
@@ -849,7 +849,7 @@
           "type": "TRANSIENT"
         },
         {
-          "valueFloat": 0.45000008,
+          "valueFloat": 0.44900498,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "HueNode",
@@ -857,7 +857,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.74000025,
+          "valueFloat": 0.7403315,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "SaturationNode",
@@ -865,7 +865,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.7099999,
+          "valueFloat": 0.70980394,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "BrightnessNode",
@@ -886,7 +886,6 @@
           "type": "VALUE"
         }
       ],
-      "window": {},
       "className": "ColorPickerFolderNode",
       "path": "background",
       "type": "FOLDER"

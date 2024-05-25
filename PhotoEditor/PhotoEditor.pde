@@ -11,8 +11,10 @@ import com.krab.lazy.*;
  private PImage current;
  private PImage withTempChanges;
  LazyGui gui;
- float max = 10;
- float min = 0;
+ float max = 1;
+ float min = -1;
+ float start = 0;
+ PImage img; // img is just for testing right now
  //private ArrayList<String> allModes;
  //private int currentMode;
  //private ArrayList<Kernel> kernels;
@@ -23,15 +25,23 @@ import com.krab.lazy.*;
 void setup() {
   size(1200, 675, P2D);
   gui = new LazyGui(this);
+  img = loadImage("test.jpeg");
+  
+  //kernels
+  
+  
+  
 }
 void draw() {
-  float x = gui.slider("exposure", min);
-  float y = gui.slider("darkness", min);
-  float z = gui.slider("outline", min);
+  float exposure = gui.slider("exposure", start, min, max);
+  float darkness = gui.slider("darkness", start, min, max);
+  float outline = gui.slider("outline", start, min, max);
   background(gui.colorPicker("background").hex);
   //float exposure = gui.sliderInt("exposure", 7);
   boolean exposureMode = gui.toggle("Exposure");
   //we need to set these to be global variables, maybe in an ArrayList?
+  image(img, 200, 200);
+  
 }
 
 void keyPressed() {
@@ -48,6 +58,5 @@ void open(String imgPath) {
     }
     catch(IOException e) {}
     current = loadImage(i.getName());
-    withTempChanges = current;
-    
+    withTempChanges = current;    
 }
