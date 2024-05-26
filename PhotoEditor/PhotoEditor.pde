@@ -14,7 +14,7 @@ import com.krab.lazy.*;
  float max = 1;
  float min = -1;
  float start = 0;
- PImage img; // img is just for testing right now
+ PImage img, copy; // img is just for testing right now
  //private ArrayList<String> allModes;
  //private int currentMode;
  //private ArrayList<Kernel> kernels;
@@ -26,6 +26,7 @@ void setup() {
   size(1200, 675, P2D);
   gui = new LazyGui(this);
   img = loadImage("test.jpeg");
+  copy = img.copy();
   
   //kernels
   
@@ -40,24 +41,19 @@ void draw() {
   boolean exposureMode = gui.toggle("Exposure");
   //we need to set these to be global variables, maybe in an ArrayList?
   image(img, 200, 200);
+  image(copy, 200, 400);
   
-  Kernel standard = new Kernel( new float[][] {
-      {0, 0, 0},
-      {0, 1, 0},
-      {0, 0, 0}
-  }); // unedited
-  Kernel exp = new Kernel( new float[][] {
-      {0, -1, 0},
-      {-1, 5, -1},
-      {0, -1, 0}
-  }); // affects exposure
-  Kernel exp2 = new Kernel( new float[][] {
-      {0, -1, 0},
-      {0, 3, 0},
-      {0, -1, 0}
-  });
+  for (int i = 0; i < img.width; i++){
+    for (int j = 0; j < img.height; j++){
+      int c = img.get(i,j);
+      int value = (int)( brightness(c));
+      value += 2;
+      copy.set(i,j,(int)exposure * c);
+    }
+  }
   
-  exp2.apply(img);
+  
+  
 }
 
 void keyPressed() {
