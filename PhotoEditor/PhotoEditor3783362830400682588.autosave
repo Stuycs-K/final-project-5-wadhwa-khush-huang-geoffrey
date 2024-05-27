@@ -13,36 +13,25 @@ import com.krab.lazy.*;
  LazyGui gui;
  float max = 10;
  float min = 0;
- private boolean[] toggles;
- //private ArrayList<float> sliders;
+ //private boolean[] allModes;
  //private int currentMode;
  //private ArrayList<Kernel> kernels;
+ //private ArrayList<Button> buttons;
  //private Paintbrush color;
  //private color selectedColor;
 
 void setup() {
   size(1200, 675, P2D);
   gui = new LazyGui(this);
-  
-  gui.button("Export");
-  //toggles = new boolean[10];
-  //toggles[0] = gui.toggle("Paintbrush");
-  //toggles[1] = gui.toggle("White Balance");
-  //toggles[2] = gui.toggle("Sharpness");
-  //toggles[3] = gui.toggle("Contrast");
-  //toggles[4] = gui.toggle("Saturation");
-  //toggles[5] = gui.toggle("Highlights");
-  //toggles[6] = gui.toggle("Shadows");
-  //toggles[7] = gui.toggle("Tempurature");
-  //toggles[8] = gui.toggle("Tint");
-  //toggles[9] = gui.toggle("Sharpness");
-  
 }
 void draw() {
-  if (gui.button("Import")) {
-    open("test.jpeg");
-    loadImage(current);
-  }
+  float x = gui.slider("exposure", min);
+  float y = gui.slider("darkness", min);
+  float z = gui.slider("outline", min);
+  background(gui.colorPicker("background").hex);
+  //float exposure = gui.sliderInt("exposure", 7);
+  boolean exposureMode = gui.toggle("Exposure");
+  
 }
 
 void keyPressed() {
