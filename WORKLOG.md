@@ -11,6 +11,10 @@ Initialized directories and created base Java/Processing files. Designed the fie
 Worked on applying toggles from the LazyGUI package and searched for mathematical applications of different Kernels (beginning with the Gaussian blur).
 
 
+### 05/24/2024 -> 05/27/2024
+
+Finalized GUI looks for Stage 1, designed calcImageCoords() to center image when displaying it. Beginning to research how to apply different filters/settings to images for Stage 2 Development. 
+
 ## GROUP MEMBER 2
 
 ### date x
