@@ -10,11 +10,12 @@ import com.krab.lazy.*;
  //private String userInput;
  private PImage current;
  private PImage withTempChanges;
+ private int imgX, imgY;
  LazyGui gui;
  float max = 10;
  float min = 0;
  private boolean[] toggles;
- //private ArrayList<float> sliders;
+ private float[] sliders;
  //private int currentMode;
  //private ArrayList<Kernel> kernels;
  //private Paintbrush color;
@@ -36,16 +37,30 @@ void setup() {
   //toggles[7] = gui.toggle("Tempurature");
   //toggles[8] = gui.toggle("Tint");
   //toggles[9] = gui.toggle("Sharpness");
-  
+  sliders = new float[10];
+  sliders[1] = gui.slider("White Balance");
+  sliders[2] = gui.slider("Sharpness");
+  sliders[3] = gui.slider("Contrast");
+  sliders[4] = gui.slider("Saturation");
+  sliders[5] = gui.slider("Highlights");
+  sliders[6] = gui.slider("Shadows");
+  sliders[7] = gui.slider("Tempurature");
+  sliders[8] = gui.slider("Tint");
+  sliders[9] = gui.slider("Sharpness");  
 }
 void draw() {
+  background(100);
+  if (withTempChanges != null) {
+    image(withTempChanges, imgX, imgY);  
+  }
   if (gui.button("Import")) {
     open("test.jpeg");
-    loadImage(current);
+    image(current, 200, 200);
   }
 }
 
 void keyPressed() {
+  
 }
 
 void open(String imgPath) {
