@@ -13,6 +13,7 @@ import com.krab.lazy.*;
  private int imgX, imgY;
  LazyGui gui;
  private float[] sliders;
+ private String[] sliderNames;
  private Kernel[] kernels;
  //private Paintbrush color;
  //private color selectedColor;
@@ -22,6 +23,7 @@ void setup() {
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
   gui.button("Import");
   gui.button("Export");
+  sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
   sliders = new float[9];
   sliders[0] = gui.slider("Exposure", 0, -100, 100);
   sliders[1] = gui.slider("Sharpness", 0, -100, 100);
@@ -34,12 +36,17 @@ void setup() {
   sliders[8] = gui.slider("Sharpness", 0, -100, 100); 
   
   kernels = new Kernel[9];
-  kernels[0] = new Kernel(new float[][] {{9, 9, 9}, {2, 2, 2}, {9, 9, 9}});
+  kernels[0] = new Kernel(new float[][] {{1.01, 1.01, 1.01}, {1.01, 1.01, 1.01}, {1.01, 1.01, 1.01}});
 }
 void draw() {
   background(100);
-  if (withTempChanges != null) {
-    updateImage();
+  for (int i = 0; i < sliders.length; i++) {
+    if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
+      sliders[i] = gui.slider(sliderNames[i]);
+      updateImage();
+    }    
+  }
+  if (withTempChanges != null) { 
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
@@ -96,7 +103,7 @@ void updateImage() {
   for (int i = 0; i < sliders.length; i++) {
     float val = sliders[i];
     if (val != 0.0) {
-      kernels[i].apply(withTempChanges, withTempChanges);  
+      kernels[i].apply(current, withTempChanges);  
     }
   }
 }
