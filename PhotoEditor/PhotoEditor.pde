@@ -23,8 +23,7 @@ import com.krab.lazy.*;
 
 void setup() {
   size(1200, 675, P2D);
-  gui = new LazyGui(this);
-  gui.setCellSize(19);
+  gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
   gui.button("Import");
   gui.button("Export");
   //toggles = new boolean[10];
@@ -83,4 +82,6 @@ void open(String imgPath) {
 void calcImageCoords() {
   int w = current.width;
   int h = current.height;
+  int usableScreenW = 0;
+  imgX = 220;
 }
