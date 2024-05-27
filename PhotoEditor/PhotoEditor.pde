@@ -12,8 +12,6 @@ import com.krab.lazy.*;
  private PImage withTempChanges;
  private int imgX, imgY;
  LazyGui gui;
- float max = 10;
- float min = 0;
  private boolean[] toggles;
  private float[] sliders;
  //private int currentMode;
@@ -22,7 +20,7 @@ import com.krab.lazy.*;
  //private color selectedColor;
 
 void setup() {
-  size(1200, 675, P2D);
+  size(1920, 1080, P2D);
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
   gui.button("Import");
   gui.button("Export");
@@ -54,9 +52,11 @@ void draw() {
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    open("test.jpeg");
-    calcImageCoords();
-    image(current, imgX, imgY);
+    open("largeTest.jpeg");
+    if (current != null) {
+      calcImageCoords();
+      image(current, imgX, imgY);
+    }
   }
 }
 
@@ -82,6 +82,20 @@ void open(String imgPath) {
 void calcImageCoords() {
   int w = current.width;
   int h = current.height;
-  int usableScreenW = 0;
-  imgX = 220;
+  int startW = 250;
+  if (current.width > width - startW) {
+    current.resize(1670, 0);
+    imgX = 250;
+  }
+  else {
+    imgX = (1670 + w) / 2; 
+  }
+  if (current.height > height) {
+    current.resize(0, 1080);  
+    imgY = 0;
+  }
+  else {
+    imgY = (1080 - h) / 2;  
+  }
+  tempWithChanges = current;
 }
