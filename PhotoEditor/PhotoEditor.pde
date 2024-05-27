@@ -36,7 +36,7 @@ void setup() {
   sliders[8] = gui.slider("Sharpness", 0, -100, 100); 
   
   kernels = new Kernel[9];
-  kernels[0] = new Kernel(new float[][] {{1.01, 1.01, 1.01}, {1.01, 1.01, 1.01}, {1.01, 1.01, 1.01}});
+  kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.1, 0}, {0, 0, 0}});
 }
 void draw() {
   background(100);
