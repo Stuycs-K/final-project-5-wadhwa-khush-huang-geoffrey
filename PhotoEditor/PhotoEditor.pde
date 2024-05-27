@@ -15,7 +15,7 @@ import com.krab.lazy.*;
  private boolean[] toggles;
  private float[] sliders;
  //private int currentMode;
- //private ArrayList<Kernel> kernels;
+ private Kernel[] kernels;
  //private Paintbrush color;
  //private color selectedColor;
 
@@ -35,20 +35,24 @@ void setup() {
   //toggles[7] = gui.toggle("Tempurature");
   //toggles[8] = gui.toggle("Tint");
   //toggles[9] = gui.toggle("Sharpness");
-  sliders = new float[10];
-  sliders[1] = gui.slider("White Balance", 0, -100, 100);
-  sliders[2] = gui.slider("Sharpness", 0, -100, 100);
-  sliders[3] = gui.slider("Contrast", 0, -100, 100);
-  sliders[4] = gui.slider("Saturation", 0, -100, 100);
-  sliders[5] = gui.slider("Highlights", 0, -100, 100);
-  sliders[6] = gui.slider("Shadows", 0, -100, 100);
-  sliders[7] = gui.slider("Tempurature", 0, -100, 100);
-  sliders[8] = gui.slider("Tint", 0, -100, 100);
-  sliders[9] = gui.slider("Sharpness", 0, -100, 100);  
+  sliders = new float[9];
+  sliders[0] = gui.slider("Exposure", 0, -100, 100);
+  sliders[1] = gui.slider("Sharpness", 0, -100, 100);
+  sliders[2] = gui.slider("Contrast", 0, -100, 100);
+  sliders[3] = gui.slider("Saturation", 0, -100, 100);
+  sliders[4] = gui.slider("Highlights", 0, -100, 100);
+  sliders[5] = gui.slider("Shadows", 0, -100, 100);
+  sliders[6] = gui.slider("Tempurature", 0, -100, 100);
+  sliders[7] = gui.slider("Tint", 0, -100, 100);
+  sliders[8] = gui.slider("Sharpness", 0, -100, 100); 
+  
+  kernels = new Kernel[9];
+  kernels[0] = new Kernel(new float[][] {{2, 2, 2}, {2, 2, 2}, {2, 2, 2}});
 }
 void draw() {
   background(100);
   if (withTempChanges != null) {
+    updateImage();
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
@@ -58,6 +62,7 @@ void draw() {
       image(current, imgX, imgY);
     }
   }
+  
 }
 
 void keyPressed() {
@@ -88,14 +93,23 @@ void calcImageCoords() {
     imgX = 250;
   }
   else {
-    imgX = (1670 + w) / 2; 
+    imgX = (1670 + current.width) / 2; 
   }
   if (current.height > height) {
     current.resize(0, 1080);  
     imgY = 0;
   }
   else {
-    imgY = (1080 - h) / 2;  
+    imgY = (1080 - current.height) / 2;  
   }
-  tempWithChanges = current;
+  withTempChanges = current;
+}
+
+void updateImage() {
+  for (int i = 0; i < sliders.length; i++) {
+    float val = sliders[i];
+    if (val != 0.0) {
+      kernels[i].apply(withTempChanges, withTempChanges);  
+    }
+  }
 }
