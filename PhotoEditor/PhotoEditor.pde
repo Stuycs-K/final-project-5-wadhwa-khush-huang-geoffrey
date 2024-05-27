@@ -12,9 +12,7 @@ import com.krab.lazy.*;
  private PImage withTempChanges;
  private int imgX, imgY;
  LazyGui gui;
- private boolean[] toggles;
  private float[] sliders;
- //private int currentMode;
  private Kernel[] kernels;
  //private Paintbrush color;
  //private color selectedColor;
@@ -24,17 +22,6 @@ void setup() {
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
   gui.button("Import");
   gui.button("Export");
-  //toggles = new boolean[10];
-  //toggles[0] = gui.toggle("Paintbrush");
-  //toggles[1] = gui.toggle("White Balance");
-  //toggles[2] = gui.toggle("Sharpness");
-  //toggles[3] = gui.toggle("Contrast");
-  //toggles[4] = gui.toggle("Saturation");
-  //toggles[5] = gui.toggle("Highlights");
-  //toggles[6] = gui.toggle("Shadows");
-  //toggles[7] = gui.toggle("Tempurature");
-  //toggles[8] = gui.toggle("Tint");
-  //toggles[9] = gui.toggle("Sharpness");
   sliders = new float[9];
   sliders[0] = gui.slider("Exposure", 0, -100, 100);
   sliders[1] = gui.slider("Sharpness", 0, -100, 100);
@@ -47,7 +34,7 @@ void setup() {
   sliders[8] = gui.slider("Sharpness", 0, -100, 100); 
   
   kernels = new Kernel[9];
-  kernels[0] = new Kernel(new float[][] {{2, 2, 2}, {2, 2, 2}, {2, 2, 2}});
+  kernels[0] = new Kernel(new float[][] {{9, 9, 9}, {2, 2, 2}, {9, 9, 9}});
 }
 void draw() {
   background(100);
