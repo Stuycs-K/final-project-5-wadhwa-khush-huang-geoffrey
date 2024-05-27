@@ -24,7 +24,8 @@ import com.krab.lazy.*;
 void setup() {
   size(1200, 675, P2D);
   gui = new LazyGui(this);
-  
+  gui.setCellSize(19);
+  gui.button("Import");
   gui.button("Export");
   //toggles = new boolean[10];
   //toggles[0] = gui.toggle("Paintbrush");
@@ -38,15 +39,15 @@ void setup() {
   //toggles[8] = gui.toggle("Tint");
   //toggles[9] = gui.toggle("Sharpness");
   sliders = new float[10];
-  sliders[1] = gui.slider("White Balance");
-  sliders[2] = gui.slider("Sharpness");
-  sliders[3] = gui.slider("Contrast");
-  sliders[4] = gui.slider("Saturation");
-  sliders[5] = gui.slider("Highlights");
-  sliders[6] = gui.slider("Shadows");
-  sliders[7] = gui.slider("Tempurature");
-  sliders[8] = gui.slider("Tint");
-  sliders[9] = gui.slider("Sharpness");  
+  sliders[1] = gui.slider("White Balance", 0, -100, 100);
+  sliders[2] = gui.slider("Sharpness", 0, -100, 100);
+  sliders[3] = gui.slider("Contrast", 0, -100, 100);
+  sliders[4] = gui.slider("Saturation", 0, -100, 100);
+  sliders[5] = gui.slider("Highlights", 0, -100, 100);
+  sliders[6] = gui.slider("Shadows", 0, -100, 100);
+  sliders[7] = gui.slider("Tempurature", 0, -100, 100);
+  sliders[8] = gui.slider("Tint", 0, -100, 100);
+  sliders[9] = gui.slider("Sharpness", 0, -100, 100);  
 }
 void draw() {
   background(100);
@@ -55,7 +56,8 @@ void draw() {
   }
   if (gui.button("Import")) {
     open("test.jpeg");
-    image(current, 200, 200);
+    calcImageCoords();
+    image(current, imgX, imgY);
   }
 }
 
@@ -76,4 +78,9 @@ void open(String imgPath) {
     current = loadImage(i.getName());
     withTempChanges = current;
     
+}
+
+void calcImageCoords() {
+  int w = current.width;
+  int h = current.height;
 }
