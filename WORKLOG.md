@@ -17,10 +17,14 @@ Finalized GUI looks for Stage 1, designed calcImageCoords() to center image when
 
 ## GROUP MEMBER 2
 
-### date x
+### 05/22/2024
 
-info
+Created the kernel class and modified the code from the previous kernel lab.
 
-### date y
+### 05/23/2024
 
-info
+Began researching the LazyGUI to implement into our code.
+
+### 05/24/2024 -> 05/27/2024
+
+Experimented with the LazyGUI sliders. Managed to get the sliders to affect the color/brightness settings of imported photos. Realized that kernels will be harder to implement.
