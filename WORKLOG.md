@@ -15,7 +15,7 @@ Worked on applying toggles from the LazyGUI package and searched for mathematica
 
 Finalized GUI looks for Stage 1, designed calcImageCoords() to center image when displaying it. Beginning to research how to apply different filters/settings to images for Stage 2 Development. 
 
-## GROUP MEMBER 2
+## Geoffrey Huang
 
 ### 05/22/2024
 
@@ -28,3 +28,7 @@ Began researching the LazyGUI to implement into our code.
 ### 05/24/2024 -> 05/27/2024
 
 Experimented with the LazyGUI sliders. Managed to get the sliders to affect the color/brightness settings of imported photos. Realized that kernels will be harder to implement.
+
+### 05/28/2024
+
+Experimented with color values on branc1, will need to modify methods to adjust exposure. Use of kernels did not work as expected.
