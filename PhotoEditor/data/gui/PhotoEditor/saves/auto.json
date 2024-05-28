@@ -817,7 +817,7 @@
       "type": "FOLDER"
     },
     {
-      "valueFloat": 0.39999998,
+      "valueFloat": 73.89994,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",
@@ -841,7 +841,7 @@
       "type": "VALUE"
     },
     {
-      "hexString": "FF2FB58C",
+      "hexString": "FF000000",
       "children": [
         {
           "className": "ColorPreviewNode",
@@ -849,7 +849,7 @@
           "type": "TRANSIENT"
         },
         {
-          "valueFloat": 0.44900498,
+          "valueFloat": 0.0,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "HueNode",
@@ -857,7 +857,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.7403315,
+          "valueFloat": 0.0,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "SaturationNode",
@@ -865,7 +865,7 @@
           "type": "VALUE"
         },
         {
-          "valueFloat": 0.70980394,
+          "valueFloat": 0.0,
           "currentPrecisionIndex": 2,
           "valueFloatPrecision": 0.01,
           "className": "BrightnessNode",
@@ -891,7 +891,7 @@
       "type": "FOLDER"
     },
     {
-      "valueBoolean": true,
+      "valueBoolean": false,
       "className": "ToggleNode",
       "path": "Exposure",
       "type": "VALUE"

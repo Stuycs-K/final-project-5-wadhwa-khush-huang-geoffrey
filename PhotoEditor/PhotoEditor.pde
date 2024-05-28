@@ -11,8 +11,8 @@ import com.krab.lazy.*;
  private PImage current;
  private PImage withTempChanges;
  LazyGui gui;
- float max = 1;
- float min = -1;
+ float max = 100;
+ float min = -100;
  float start = 0;
  PImage img, copy; // img is just for testing right now
  //private ArrayList<String> allModes;
@@ -46,9 +46,7 @@ void draw() {
   for (int i = 0; i < img.width; i++){
     for (int j = 0; j < img.height; j++){
       int c = img.get(i,j);
-      int value = (int)( brightness(c));
-      value += 2;
-      copy.set(i,j,(int)exposure * c);
+      copy.set(i,j,(int)exposure + c);
     }
   }
   
