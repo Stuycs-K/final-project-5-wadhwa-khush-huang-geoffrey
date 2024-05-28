@@ -36,7 +36,7 @@ void setup() {
   sliders[8] = gui.slider("Sharpness", 0, -100, 100); 
   
   kernels = new Kernel[9];
-  kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.1, 0}, {0, 0, 0}});
+  kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.01, 0}, {0, 0, 0}});
 }
 void draw() {
   background(100);
@@ -50,7 +50,7 @@ void draw() {
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    open("largeTest.jpeg");
+    open("largeTest.png");
     if (current != null) {
       calcImageCoords();
       image(current, imgX, imgY);
