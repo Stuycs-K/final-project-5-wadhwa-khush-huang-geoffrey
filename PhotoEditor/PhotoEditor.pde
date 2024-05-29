@@ -20,6 +20,7 @@ import com.krab.lazy.*;
 
 void setup() {
   size(1920, 1080, P2D);
+  background(100);
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
   gui.button("Import");
   gui.button("Export");
@@ -39,7 +40,6 @@ void setup() {
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
 }
 void draw() {
-  background(100);
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) > sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
@@ -50,7 +50,8 @@ void draw() {
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    open("largeTest.png");
+    textInput();
+    //open("largeTest.png");
     if (current != null) {
       calcImageCoords();
       image(current, imgX, imgY);
@@ -112,6 +113,17 @@ void updateImage(boolean inc) {
 
 String textInput() {
   String out = "";
-  rect(width/2 - 800, height/2 - 400, 800, 400);
+  fill(200);
+  rect(width/2 - 400, height/2 - 200, 800, 400);
+  fill(0);
+  textSize(32);
+  text("Enter the path of the image to be imported", width/2 - 275, height/2 - 150);
+  fill(255);
+  rect(width/2 - 400, height/2, 800, 200);
+  while (key != RETURN) {
+    out += key;
+    fill(0);
+    text(out, width/2 - 400, height/2);
+  }
   return out;
 }
