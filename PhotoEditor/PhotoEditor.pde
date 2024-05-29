@@ -34,7 +34,7 @@ void setup() {
 }
 void draw() {
   float exposure = gui.slider("exposure", start, min, max);
-  float darkness = gui.slider("darkness", start, min, max);
+  float saturation = gui.slider("saturation", start, min, max);
   float outline = gui.slider("outline", start, min, max);
   background(gui.colorPicker("background").hex);
   //float exposure = gui.sliderInt("exposure", 7);
@@ -43,6 +43,7 @@ void draw() {
   image(img, 200, 200);
   image(copy, 200, 400);
   
+  // brightness
   for (int i = 0; i < img.width; i++){
     for (int j = 0; j < img.height; j++){
       float red = red(img.get(i, j)) + exposure;
@@ -52,6 +53,47 @@ void draw() {
       copy.set(i,j,(int) c);
     }
   }
+  
+  // saturation
+  for (int i = 0; i < img.width; i++){
+    for (int j = 0; j < img.height; j++){
+      float red = red(img.get(i, j));
+      float green = green(img.get(i, j));
+      float blue = blue(img.get(i, j));
+      float max = Math.max(Math.max(red, green), blue);
+      if (red == max){
+        red += saturation;
+        if (green == Math.max(green, blue)){
+          green += saturation;
+        }
+        else{
+          blue += saturation;
+        }
+      }
+      if (green == max){
+        green += saturation;
+        if (red == Math.max(red, blue)){
+          red += saturation;
+        }
+        else{
+          blue += saturation;
+        }
+      }
+      if (blue == max){
+        blue += saturation;
+        if (green == Math.max(green, red)){
+          green += saturation;
+        }
+        else{
+          red += saturation;
+        }
+      }
+      color c = color(red, green, blue);
+      copy.set(i,j,(int) c);
+    }
+  }
+  
+  
   
   
   
