@@ -15,9 +15,11 @@ import com.krab.lazy.*;
  LazyGui gui;
  ControlP5 cp5;
  ControlGroup control;
+ Textfield in;
  private float[] sliders;
  private String[] sliderNames;
  private Kernel[] kernels;
+ private String userInput;
  //private Paintbrush color;
  //private color selectedColor;
 
@@ -26,7 +28,9 @@ void setup() {
   background(100);
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
   cp5 = new ControlP5(this);
-  control = new ControlGroup(cp5, "all cp5 elements"); 
+  control = new ControlGroup(cp5, "all cp5 elements");
+  in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
+  in.hide();
   gui.button("Import");
   gui.button("Export");
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
@@ -56,7 +60,8 @@ void draw() {
   }
   if (gui.button("Import")) {
     textInput();
-    //open("largeTest.png");
+    while (userInput == "" || userInput == null) {}
+    open(userInput);
     if (current != null) {
       calcImageCoords();
       image(current, imgX, imgY);
@@ -66,7 +71,8 @@ void draw() {
 }
 
 void keyPressed() {
-  
+  if (keyCode == ENTER && in.isVisible())
+    Submit();
 }
 
 void open(String imgPath) {
@@ -116,7 +122,7 @@ void updateImage(boolean inc) {
   }
 }
 
-String textInput() {
+void textInput() {
   fill(200);
   rect(width/2 - 400, height/2 - 200, 800, 400);
   fill(0);
@@ -124,7 +130,12 @@ String textInput() {
   text("Enter the path of the image to be imported", width/2 - 275, height/2 - 150);
   fill(255);
   textSize(32);
-  Textfield in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
-  System.out.println(in.getText());
-  return in.getText();
+  in.show();
+  in.setFont(createFont("Times New Roman", 32));
+}
+
+void Submit() {
+  userInput = in.getText();
+  in.hide();
+  background(100);
 }
