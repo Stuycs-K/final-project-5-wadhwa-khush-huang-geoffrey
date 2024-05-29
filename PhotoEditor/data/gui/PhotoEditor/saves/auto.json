@@ -825,7 +825,7 @@
       "type": "VALUE"
     },
     {
-      "valueFloat": 52.19995,
+      "valueFloat": -24.200031,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",
@@ -891,7 +891,7 @@
       "type": "FOLDER"
     },
     {
-      "valueBoolean": false,
+      "valueBoolean": true,
       "className": "ToggleNode",
       "path": "Exposure",
       "type": "VALUE"
