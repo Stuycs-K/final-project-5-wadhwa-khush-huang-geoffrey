@@ -109,3 +109,9 @@ void updateImage(boolean inc) {
     }
   }
 }
+
+String textInput() {
+  String out = "";
+  rect(width/2 - 800, height/2 - 400, 800, 400);
+  return out;
+}
