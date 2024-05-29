@@ -1,4 +1,5 @@
 import com.krab.lazy.*;
+import controlP5.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.io.File;
@@ -12,6 +13,8 @@ import com.krab.lazy.*;
  private PImage withTempChanges;
  private int imgX, imgY;
  LazyGui gui;
+ ControlP5 cp5;
+ ControlGroup control;
  private float[] sliders;
  private String[] sliderNames;
  private Kernel[] kernels;
@@ -22,6 +25,8 @@ void setup() {
   size(1920, 1080, P2D);
   background(100);
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
+  cp5 = new ControlP5(this);
+  control = new ControlGroup(cp5, "all cp5 elements"); 
   gui.button("Import");
   gui.button("Export");
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
@@ -112,18 +117,14 @@ void updateImage(boolean inc) {
 }
 
 String textInput() {
-  String out = "";
   fill(200);
   rect(width/2 - 400, height/2 - 200, 800, 400);
   fill(0);
   textSize(32);
   text("Enter the path of the image to be imported", width/2 - 275, height/2 - 150);
   fill(255);
-  rect(width/2 - 400, height/2, 800, 200);
-  while (key != RETURN) {
-    out += key;
-    fill(0);
-    text(out, width/2 - 400, height/2);
-  }
-  return out;
+  textSize(32);
+  Textfield in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
+  System.out.println(in.getText());
+  return in.getText();
 }
