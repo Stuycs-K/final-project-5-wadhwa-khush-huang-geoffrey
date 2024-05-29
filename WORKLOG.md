@@ -15,6 +15,10 @@ Worked on applying toggles from the LazyGUI package and searched for mathematica
 
 Finalized GUI looks for Stage 1, designed calcImageCoords() to center image when displaying it. Beginning to research how to apply different filters/settings to images for Stage 2 Development. 
 
+### 05/28/2024
+
+Worked on redesigning Kernel approach in-class, researched other ways of doing pixel manipulation at home. 
+
 ## Geoffrey Huang
 
 ### 05/22/2024
