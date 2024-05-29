@@ -817,15 +817,15 @@
       "type": "FOLDER"
     },
     {
-      "valueFloat": 0.0,
-      "currentPrecisionIndex": 3,
-      "valueFloatPrecision": 0.1,
+      "valueFloat": 47.0,
+      "currentPrecisionIndex": 4,
+      "valueFloatPrecision": 1.0,
       "className": "SliderNode",
       "path": "exposure",
       "type": "VALUE"
     },
     {
-      "valueFloat": -24.200031,
+      "valueFloat": 16.099995,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",

@@ -46,19 +46,53 @@ void draw() {
   // Plan: make 3 variables outside of the loops for the original color values
   // Modify with the loops
   // Set color at the end
-  
+   
   // brightness
   for (int i = 0; i < img.width; i++){
     for (int j = 0; j < img.height; j++){
       float red = red(img.get(i, j)) + exposure;
       float green = green(img.get(i, j)) + exposure;
       float blue = blue(img.get(i, j)) + exposure;  
+      
+      float max = Math.max(Math.max(red, green), blue);
+      if (red == max){
+        red += saturation;
+        if (green == Math.max(green, blue)){
+          green += saturation;
+        }
+        else{
+          blue += saturation;
+        }
+      }
+      if (green == max){
+        green += saturation;
+        if (red == Math.max(red, blue)){
+          red += saturation;
+        }
+        else{
+          blue += saturation;
+        }
+      }
+      if (blue == max){
+        blue += saturation;
+        if (green == Math.max(green, red)){
+          green += saturation;
+        }
+        else{
+          red += saturation;
+        }
+      }
+      
+      red = Math.min(255, contrast * red);
+      green = Math.min(255, contrast * green);
+      blue = Math.min(255, contrast * blue);
+      
       color c = color(red, green, blue);
       copy.set(i,j,(int) c);
     }
   }
   
-  // saturation
+  /*// saturation
   for (int i = 0; i < img.width; i++){
     for (int j = 0; j < img.height; j++){
       float red = red(img.get(i, j));
@@ -107,7 +141,7 @@ void draw() {
       copy.set(i,j,(int) c);
     }
   }
-  
+  */
   
   
 }
