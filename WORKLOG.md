@@ -32,3 +32,8 @@ Experimented with the LazyGUI sliders. Managed to get the sliders to affect the 
 ### 05/28/2024
 
 Experimented with color values on branc1, will need to modify methods to adjust exposure. Use of kernels did not work as expected.
+
+Notes:
+- Brightness increases by increasing the rgb values in equal proportion
+- Saturation increases by increasing the two highest rgb values
+- Contrast increase by multiplying each rgb value by the slider value
