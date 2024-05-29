@@ -817,7 +817,7 @@
       "type": "FOLDER"
     },
     {
-      "valueFloat": 47.0,
+      "valueFloat": -100.0,
       "currentPrecisionIndex": 4,
       "valueFloatPrecision": 1.0,
       "className": "SliderNode",
@@ -825,15 +825,15 @@
       "type": "VALUE"
     },
     {
-      "valueFloat": 16.099995,
-      "currentPrecisionIndex": 3,
-      "valueFloatPrecision": 0.1,
+      "valueFloat": -100.0,
+      "currentPrecisionIndex": 4,
+      "valueFloatPrecision": 1.0,
       "className": "SliderNode",
       "path": "saturation",
       "type": "VALUE"
     },
     {
-      "valueFloat": 1.0,
+      "valueFloat": 5.0,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",
