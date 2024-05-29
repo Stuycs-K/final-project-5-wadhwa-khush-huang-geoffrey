@@ -85,14 +85,14 @@ void calcImageCoords() {
   int h = current.height;
   int startW = 250;
   if (current.width > width - startW) {
-    current.resize(1670, 0);
+    current.resize(width - startW, 0);
     imgX = 250;
   }
   else {
     imgX = (1670 + current.width) / 2; 
   }
   if (current.height > height) {
-    current.resize(0, 1080);  
+    current.resize(0, height);  
     imgY = 0;
   }
   else {
