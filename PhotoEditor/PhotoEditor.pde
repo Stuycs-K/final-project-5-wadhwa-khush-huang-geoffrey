@@ -35,7 +35,7 @@ void setup() {
 void draw() {
   float exposure = gui.slider("exposure", start, min, max);
   float saturation = gui.slider("saturation", start, min, max);
-  float outline = gui.slider("outline", start, min, max);
+  float contrast = gui.slider("contrast", 1, 1, 5);
   background(gui.colorPicker("background").hex);
   //float exposure = gui.sliderInt("exposure", 7);
   boolean exposureMode = gui.toggle("Exposure");
@@ -93,7 +93,16 @@ void draw() {
     }
   }
   
-  
+  // contrast
+  for (int i = 0; i < img.width; i++){
+    for (int j = 0; j < img.height; j++){
+      float red = Math.min(255, contrast * red(img.get(i, j)));
+      float green = Math.min(255, contrast * green(img.get(i, j)));
+      float blue = Math.min(255, contrast * blue(img.get(i, j)));
+      color c = color(red, green, blue);
+      copy.set(i,j,(int) c);
+    }
+  }
   
   
   
