@@ -45,8 +45,11 @@ void draw() {
   
   for (int i = 0; i < img.width; i++){
     for (int j = 0; j < img.height; j++){
-      int c = img.get(i,j);
-      copy.set(i,j,(int)exposure + c);
+      float red = red(img.get(i, j)) + exposure;
+      float green = green(img.get(i, j)) + exposure;
+      float blue = blue(img.get(i, j)) + exposure;
+      color c = color(red, green, blue);
+      copy.set(i,j,(int) c);
     }
   }
   
