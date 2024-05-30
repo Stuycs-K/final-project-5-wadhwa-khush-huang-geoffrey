@@ -40,7 +40,7 @@ void setup() {
   sliders = new float[9];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
   sliders[1] = gui.sliderInt("Sharpness", 0, -100, 100);
-  sliders[2] = gui.sliderInt("Contrast", 0, -100, 100);
+  sliders[2] = gui.sliderInt("Contrast", 1, 1, 5);
   sliders[3] = gui.sliderInt("Saturation", 0, -100, 100);
   sliders[4] = gui.sliderInt("Highlights", 0, -100, 100);
   sliders[5] = gui.sliderInt("Shadows", 0, -100, 100);
@@ -58,8 +58,56 @@ void draw() {
       //updateImage(true);
     }
   }
-  if (withTempChanges != null) { 
-    image(withTempChanges, imgX, imgY);  
+  if (withTempChanges != null) {   
+    
+    // we want to make a copy and display the copy instead of current
+    for (int i = 0; i < withTempChanges.width; i++){
+    for (int j = 0; j < withTempChanges.height; j++){
+      // exposure modification
+      float red = red(current.get(i, j)) + sliders[0];
+      float green = green(current.get(i, j)) + sliders[0];
+      float blue = blue(current.get(i, j)) + sliders[0];  
+      
+      // saturation modification
+      float max = Math.max(Math.max(red, green), blue);
+      if (red == max){
+        red += sliders[3];
+        if (green == Math.max(green, blue)){
+          green += sliders[3];
+        }
+        else{
+          blue += sliders[3];
+        }
+      }
+      if (green == max){
+        green += sliders[3];
+        if (red == Math.max(red, blue)){
+          red += sliders[3];
+        }
+        else{
+          blue += sliders[3];
+        }
+      }
+      if (blue == max){
+        blue += sliders[3];
+        if (green == Math.max(green, red)){
+          green += sliders[3];
+        }
+        else{
+          red += sliders[3];
+        }
+      }
+      
+      // contrast modification
+      red = Math.min(255, sliders[2] * red);
+      green = Math.min(255, sliders[2] * green);
+      blue = Math.min(255, sliders[2] * blue);
+      
+      color c = color(red, green, blue);
+      withTempChanges.set(i,j,(int) c);
+    }
+  }
+  image(withTempChanges, imgX, imgY);
   }
   if (gui.button("Import")) {
     textInput();
@@ -69,6 +117,8 @@ void draw() {
     calcImageCoords();
     image(current, imgX, imgY);
   }
+  
+  
 }
 
 void keyPressed() {
