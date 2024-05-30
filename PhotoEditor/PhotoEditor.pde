@@ -61,15 +61,7 @@ void draw() {
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    if (!firstClick) {
-      textInput();
-      firstClick = true;
-    }
-    else {
-      Submit();
-      open(userInput);
-    }
-    
+    textInput();    
     if (current != null) {
       calcImageCoords();
       image(current, imgX, imgY);
@@ -137,4 +129,5 @@ void Submit() {
   userInput = in.getText();
   in.hide();
   background(100);
+  gui.showGui();
 }
