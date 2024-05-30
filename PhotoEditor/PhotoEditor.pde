@@ -59,49 +59,51 @@ void draw() {
     }
   }
   if (withTempChanges != null) {   
-    
+    float exposure = sliders[0];
+    float saturation = sliders[3];
+    float contrast = sliders[2];
     // we want to make a copy and display the copy instead of current
     for (int i = 0; i < withTempChanges.width; i++){
     for (int j = 0; j < withTempChanges.height; j++){
       // exposure modification
-      float red = red(current.get(i, j)) + sliders[0];
-      float green = green(current.get(i, j)) + sliders[0];
-      float blue = blue(current.get(i, j)) + sliders[0];  
+      float red = red(current.get(i, j)) + exposure;
+      float green = green(current.get(i, j)) + exposure;
+      float blue = blue(current.get(i, j)) + exposure;  
       
       // saturation modification
       float max = Math.max(Math.max(red, green), blue);
       if (red == max){
-        red += sliders[3];
+        red += saturation;
         if (green == Math.max(green, blue)){
-          green += sliders[3];
+          green += saturation;
         }
         else{
-          blue += sliders[3];
+          blue += saturation;
         }
       }
       if (green == max){
-        green += sliders[3];
+        green += saturation;
         if (red == Math.max(red, blue)){
-          red += sliders[3];
+          red += saturation;
         }
         else{
-          blue += sliders[3];
+          blue += saturation;
         }
       }
       if (blue == max){
-        blue += sliders[3];
+        blue += saturation;
         if (green == Math.max(green, red)){
-          green += sliders[3];
+          green += saturation;
         }
         else{
-          red += sliders[3];
+          red += saturation;
         }
       }
       
       // contrast modification
-      red = Math.min(255, sliders[2] * red);
-      green = Math.min(255, sliders[2] * green);
-      blue = Math.min(255, sliders[2] * blue);
+      red = Math.min(255, contrast * red);
+      green = Math.min(255, contrast * green);
+      blue = Math.min(255, contrast * blue);
       
       color c = color(red, green, blue);
       withTempChanges.set(i,j,(int) c);
