@@ -1,4 +1,5 @@
 import com.krab.lazy.*;
+import controlP5.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.io.File;
@@ -12,15 +13,27 @@ import com.krab.lazy.*;
  private PImage withTempChanges;
  private int imgX, imgY;
  LazyGui gui;
+ ControlP5 cp5;
+ ControlGroup control;
+ Textfield in;
  private float[] sliders;
  private String[] sliderNames;
  private Kernel[] kernels;
+ private String userInput;
+ private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
 
 void setup() {
   size(1920, 1080, P2D);
+  background(100);
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
+  cp5 = new ControlP5(this);
+  control = new ControlGroup(cp5, "all cp5 elements");
+  in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
+  in.hide();
+  userInput = "";
+  submitted = false;
   gui.button("Import");
   gui.button("Export");
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
@@ -39,28 +52,28 @@ void setup() {
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
 }
 void draw() {
-  background(100);
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) > sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
-      updateImage(true);
+      //updateImage(true);
     }
   }
   if (withTempChanges != null) { 
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    open("largeTest.png");
-    if (current != null) {
-      calcImageCoords();
-      image(current, imgX, imgY);
-    }
+    textInput();
   }
-  
+  if (submitted) {
+    open(userInput);
+    calcImageCoords();
+    image(current, imgX, imgY);
+  }
 }
 
 void keyPressed() {
-  
+  if (keyCode == ENTER && in.isVisible())
+    Submit();
 }
 
 void open(String imgPath) {
@@ -75,15 +88,14 @@ void open(String imgPath) {
     catch(IOException e) {}
     current = loadImage(i.getName());
     withTempChanges = current;
-    
-    
-    
+    userInput = "";
+    submitted = false;
 }
 
 void calcImageCoords() {
   int w = current.width;
   int h = current.height;
-  int startW = 250;
+  int startW = 180;
   if (current.width > width - startW) {
     current.resize(width - startW, 0);
     imgX = 250;
@@ -101,11 +113,22 @@ void calcImageCoords() {
   withTempChanges = current;
 }
 
-void updateImage(boolean inc) {
-  for (int i = 0; i < sliders.length; i++) {
-    float val = sliders[i];
-    if (inc && kernels[i] != null) {
-      kernels[i].apply(withTempChanges, withTempChanges);  
-    }
-  }
+void textInput() {
+  fill(200);
+  rect(width/2 - 400, height/2 - 200, 800, 400);
+  fill(0);
+  textSize(32);
+  text("Enter the path of the image to be imported", width/2 - 275, height/2 - 150);
+  fill(255);
+  textSize(32);
+  in.show();
+  in.setFont(createFont("Times New Roman", 32));
+}
+
+void Submit() {
+  userInput = in.getText();
+  in.hide();
+  background(100);
+  gui.showGui();
+  submitted = true;
 }
