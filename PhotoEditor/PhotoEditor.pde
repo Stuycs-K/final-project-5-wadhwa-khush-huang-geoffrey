@@ -20,7 +20,7 @@ import com.krab.lazy.*;
  private String[] sliderNames;
  private Kernel[] kernels;
  private String userInput;
- private boolean firstClick;
+ private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
 
@@ -32,7 +32,8 @@ void setup() {
   control = new ControlGroup(cp5, "all cp5 elements");
   in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
   in.hide();
-  firstClick = false;
+  userInput = "";
+  submitted = false;
   gui.button("Import");
   gui.button("Export");
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
@@ -61,13 +62,13 @@ void draw() {
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    textInput();    
-    if (current != null) {
-      calcImageCoords();
-      image(current, imgX, imgY);
-    }
+    textInput();
   }
-  
+  if (submitted) {
+    open(userInput);
+    calcImageCoords();
+    image(current, imgX, imgY);
+  }
 }
 
 void keyPressed() {
@@ -87,15 +88,14 @@ void open(String imgPath) {
     catch(IOException e) {}
     current = loadImage(i.getName());
     withTempChanges = current;
-    
-    
-    
+    userInput = "";
+    submitted = false;
 }
 
 void calcImageCoords() {
   int w = current.width;
   int h = current.height;
-  int startW = 250;
+  int startW = 180;
   if (current.width > width - startW) {
     current.resize(1670, 0);
     imgX = 250;
@@ -130,4 +130,5 @@ void Submit() {
   in.hide();
   background(100);
   gui.showGui();
+  submitted = true;
 }
