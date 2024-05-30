@@ -20,6 +20,7 @@ import com.krab.lazy.*;
  private String[] sliderNames;
  private Kernel[] kernels;
  private String userInput;
+ private boolean firstClick;
  //private Paintbrush color;
  //private color selectedColor;
 
@@ -31,6 +32,7 @@ void setup() {
   control = new ControlGroup(cp5, "all cp5 elements");
   in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
   in.hide();
+  firstClick = false;
   gui.button("Import");
   gui.button("Export");
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
@@ -52,16 +54,22 @@ void draw() {
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) > sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
-      updateImage(true);
+      //updateImage(true);
     }
   }
   if (withTempChanges != null) { 
     image(withTempChanges, imgX, imgY);  
   }
   if (gui.button("Import")) {
-    textInput();
-    while (userInput == "" || userInput == null) {}
-    open(userInput);
+    if (!firstClick) {
+      textInput();
+      firstClick = true;
+    }
+    else {
+      Submit();
+      open(userInput);
+    }
+    
     if (current != null) {
       calcImageCoords();
       image(current, imgX, imgY);
@@ -111,15 +119,6 @@ void calcImageCoords() {
     imgY = (1080 - current.height) / 2;  
   }
   withTempChanges = current;
-}
-
-void updateImage(boolean inc) {
-  for (int i = 0; i < sliders.length; i++) {
-    float val = sliders[i];
-    if (inc && kernels[i] != null) {
-      kernels[i].apply(withTempChanges, withTempChanges);  
-    }
-  }
 }
 
 void textInput() {
