@@ -23,6 +23,7 @@ import com.krab.lazy.*;
  private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
+ float exposure, contrast, saturation;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -38,10 +39,10 @@ void setup() {
   gui.button("Export");
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
   sliders = new float[9];
-  sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
+  exposure = gui.sliderInt("Exposure", 0, -100, 100);
   sliders[1] = gui.sliderInt("Sharpness", 0, -100, 100);
-  sliders[2] = gui.sliderInt("Contrast", 1, 1, 5);
-  sliders[3] = gui.sliderInt("Saturation", 0, -100, 100);
+  contrast = gui.sliderInt("Contrast", 1, 1, 5);
+  saturation = gui.sliderInt("Saturation", 0, -100, 100);
   sliders[4] = gui.sliderInt("Highlights", 0, -100, 100);
   sliders[5] = gui.sliderInt("Shadows", 0, -100, 100);
   sliders[6] = gui.sliderInt("Tempurature", 0, -100, 100);
@@ -62,54 +63,55 @@ void draw() {
     float exposure = sliders[0];
     float saturation = sliders[3];
     float contrast = sliders[2];
+    image(withTempChanges, imgX, imgY);
     // we want to make a copy and display the copy instead of current
     for (int i = 0; i < withTempChanges.width; i++){
-    for (int j = 0; j < withTempChanges.height; j++){
-      // exposure modification
-      float red = red(current.get(i, j)) + exposure;
-      float green = green(current.get(i, j)) + exposure;
-      float blue = blue(current.get(i, j)) + exposure;  
-      
-      // saturation modification
-      float max = Math.max(Math.max(red, green), blue);
-      if (red == max){
-        red += saturation;
-        if (green == Math.max(green, blue)){
-          green += saturation;
-        }
-        else{
-          blue += saturation;
-        }
-      }
-      if (green == max){
-        green += saturation;
-        if (red == Math.max(red, blue)){
+       for (int j = 0; j < withTempChanges.height; j++){
+        // exposure modification
+        float red = red(current.get(i, j)) + exposure;
+        float green = green(current.get(i, j)) + exposure;
+        float blue = blue(current.get(i, j)) + exposure;  
+        
+        // saturation modification
+        float max = Math.max(Math.max(red, green), blue);
+        if (red == max){
           red += saturation;
+          if (green == Math.max(green, blue)){
+            green += saturation;
+          }
+          else{
+            blue += saturation;
+          }
         }
-        else{
-          blue += saturation;
-        }
-      }
-      if (blue == max){
-        blue += saturation;
-        if (green == Math.max(green, red)){
+        if (green == max){
           green += saturation;
+          if (red == Math.max(red, blue)){
+            red += saturation;
+          }
+          else{
+            blue += saturation;
+          }
         }
-        else{
-          red += saturation;
+        if (blue == max){
+          blue += saturation;
+          if (green == Math.max(green, red)){
+            green += saturation;
+          }
+          else{
+            red += saturation;
+          }
         }
+        
+        // contrast modification
+        red = Math.min(255, contrast * red);
+        green = Math.min(255, contrast * green);
+        blue = Math.min(255, contrast * blue);
+        
+        color c = color(red, green, blue);
+        withTempChanges.set(i,j,(int) c);
       }
-      
-      // contrast modification
-      red = Math.min(255, contrast * red);
-      green = Math.min(255, contrast * green);
-      blue = Math.min(255, contrast * blue);
-      
-      color c = color(red, green, blue);
-      withTempChanges.set(i,j,(int) c);
-    }
   }
-  image(withTempChanges, imgX, imgY);
+  
   }
   if (gui.button("Import")) {
     textInput();
