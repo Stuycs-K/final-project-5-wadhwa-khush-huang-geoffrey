@@ -63,9 +63,9 @@ void draw() {
     }
   }
   if (withTempChanges != null) {   
-    
+    // restructure code, no conditional for modifications. switch to if(
+    // copy == null) then do the import stuff
     image(withTempChanges, imgX, imgY);
-    // we want to make a copy and display the copy instead of current
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
         // exposure modification
@@ -120,7 +120,7 @@ void draw() {
   if (submitted) {
     open(userInput);
     calcImageCoords();
-    image(current, imgX, imgY);
+    image(withTempChanges, imgX, imgY);
   }
   
   
