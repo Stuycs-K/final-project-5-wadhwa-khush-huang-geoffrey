@@ -76,7 +76,29 @@ void keyPressed() {
     Submit();
 }
 
-boolean open(String imgPath) {
+//boolean open(String imgPath) {
+//    //Copying image to data and creating a PImage with the relevant qualities
+//    File i = new File(imgPath);
+//    Path in = i.toPath();
+//    Path out = new File("data/" + i.getName()).toPath();
+//    String target = "";
+//    try {
+//      target = Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING).toString();
+//      current = loadImage(i.getName());
+//      withTempChanges = current;
+//      userInput = "";
+//      submitted = false;
+//      return true;
+//    }
+//    catch(IOException e) {
+//      e.printStackTrace();
+//      return false;
+//    }
+    
+//}
+
+
+void open(String imgPath) {
     //Copying image to data and creating a PImage with the relevant qualities
     File i = new File(imgPath);
     Path in = i.toPath();
@@ -84,16 +106,12 @@ boolean open(String imgPath) {
     String target = "";
     try {
       target = Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING).toString();
-      current = loadImage(i.getName());
-      withTempChanges = current;
-      userInput = "";
-      submitted = false;
-      return true;
     }
-    catch(IOException e) {
-      return false;
-    }
-    
+    catch(IOException e) {}
+    current = loadImage(i.getName());
+    withTempChanges = current;
+    userInput = "";
+    submitted = false;
 }
 
 void calcImageCoords() {
@@ -132,19 +150,20 @@ void textInput() {
 void Submit() {
   userInput = in.getText();
   in.setText("");
-  if (open(userInput)) {
-    in.hide();
-    background(100);
-    gui.showGui();
-    submitted = true;
-  }
-  else {
-    fill(200);
-    rect(width/2 - 400, height/2 - 200, 800, 400);
-    fill(0);
-    textSize(32);
-    text("PATH INVALID: Enter the path of the image to be imported", width/2 - 350, height/2 - 150);
-  }
+  submitted = true;
+  //if (open(userInput)) {
+  //  in.hide();
+  //  background(100);
+  //  gui.showGui();
+  //  submitted = true;
+  //}
+  //else {
+  //  fill(200);
+  //  rect(width/2 - 400, height/2 - 200, 800, 400);
+  //  fill(0);
+  //  textSize(32);
+  //  text("PATH INVALID: Enter the path of the image to be imported", width/2 - 350, height/2 - 150);
+  //}
   
   
 }
