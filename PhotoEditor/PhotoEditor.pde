@@ -65,8 +65,8 @@ void draw() {
     float contrast = sliders[2];
     image(withTempChanges, imgX, imgY);
     // we want to make a copy and display the copy instead of current
-    for (int i = 0; i < withTempChanges.width; i++){
-       for (int j = 0; j < withTempChanges.height; j++){
+    for (int i = 0; i < current.width; i++){
+       for (int j = 0; j < current.height; j++){
         // exposure modification
         float red = red(current.get(i, j)) + exposure;
         float green = green(current.get(i, j)) + exposure;
