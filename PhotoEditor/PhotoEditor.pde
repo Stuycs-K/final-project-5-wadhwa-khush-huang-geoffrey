@@ -142,7 +142,7 @@ void open(String imgPath) {
     }
     catch(IOException e) {}
     current = loadImage(i.getName());
-    withTempChanges = current;
+    withTempChanges = current.copy();
     userInput = "";
     submitted = false;
 }
