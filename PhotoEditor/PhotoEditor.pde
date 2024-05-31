@@ -23,7 +23,6 @@ import com.krab.lazy.*;
  private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
- float exposure, contrast, saturation;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -37,6 +36,7 @@ void setup() {
   submitted = false;
   gui.button("Import");
   gui.button("Export");
+  
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
   sliders = new float[9];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
@@ -53,16 +53,17 @@ void setup() {
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
 }
 void draw() {
+  float exposure = sliders[0];
+  float saturation = sliders[3];
+  float contrast = sliders[2];
   for (int i = 0; i < sliders.length; i++) {
-    if (gui.slider(sliderNames[i]) > sliders[i] && withTempChanges != null) {
+    if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
       //updateImage(true);
     }
   }
   if (withTempChanges != null) {   
-    float exposure = sliders[0];
-    float saturation = sliders[3];
-    float contrast = sliders[2];
+    
     image(withTempChanges, imgX, imgY);
     // we want to make a copy and display the copy instead of current
     for (int i = 0; i < current.width; i++){
