@@ -23,7 +23,7 @@ import com.krab.lazy.*;
  private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
- float expL, conL, satL;
+ float exposure, contrast, saturation;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -37,7 +37,6 @@ void setup() {
   submitted = false;
   gui.button("Import");
   gui.button("Export");
-  
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
   sliders = new float[9];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
@@ -52,23 +51,22 @@ void setup() {
   
   kernels = new Kernel[9];
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
-  
 }
-
 void draw() {
-  float exposure = sliders[0];
-  float saturation = sliders[3];
-  float contrast = sliders[2];
   for (int i = 0; i < sliders.length; i++) {
-    if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
+    if (gui.slider(sliderNames[i]) > sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
       //updateImage(true);
     }
   }
   if (withTempChanges != null) {   
+    float exposure = sliders[0];
+    float saturation = sliders[3];
+    float contrast = sliders[2];
     image(withTempChanges, imgX, imgY);
-    for (int i = 0; i < current.width; i++){
-       for (int j = 0; j < current.height; j++){
+    // we want to make a copy and display the copy instead of current
+    for (int i = 0; i < withTempChanges.width; i++){
+       for (int j = 0; j < withTempChanges.height; j++){
         // exposure modification
         float red = red(current.get(i, j)) + exposure;
         float green = green(current.get(i, j)) + exposure;
@@ -121,15 +119,10 @@ void draw() {
   if (submitted) {
     open(userInput);
     calcImageCoords();
-    image(withTempChanges, imgX, imgY);
+    image(current, imgX, imgY);
   }
-  expL = exposure;
-  conL = contrast;
-  satL = saturation;
   
-}
-
-void mouseClicked(){
+  
 }
 
 void keyPressed() {
@@ -148,7 +141,7 @@ void open(String imgPath) {
     }
     catch(IOException e) {}
     current = loadImage(i.getName());
-    withTempChanges = current.copy();
+    withTempChanges = current;
     userInput = "";
     submitted = false;
 }
@@ -171,7 +164,7 @@ void calcImageCoords() {
   else {
     imgY = (1080 - current.height) / 2;  
   }
-  withTempChanges = current.copy();
+  withTempChanges = current;
 }
 
 void textInput() {
