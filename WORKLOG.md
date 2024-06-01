@@ -19,6 +19,14 @@ Finalized GUI looks for Stage 1, designed calcImageCoords() to center image when
 
 Worked on redesigning Kernel approach in-class, researched other ways of doing pixel manipulation at home. 
 
+### 05/29/2024
+
+Continued to work on import functionality and implemented ControlP5 text input.
+
+##05/30/2024
+
+Finalized implementation of import(), pending error message for incorrect filenames. 
+
 ## Geoffrey Huang
 
 ### 05/22/2024
