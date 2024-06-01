@@ -23,6 +23,7 @@ import com.krab.lazy.*;
  private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
+ float expL, conL, satL;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -51,7 +52,9 @@ void setup() {
   
   kernels = new Kernel[9];
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
+  
 }
+
 void draw() {
   float exposure = sliders[0];
   float saturation = sliders[3];
@@ -62,9 +65,7 @@ void draw() {
       //updateImage(true);
     }
   }
-  if (withTempChanges != null) {   
-    // restructure code, no conditional for modifications. switch to if(
-    // copy == null) then do the import stuff
+  if (withTempChanges != null && (!equals(exposure, expL) || !equals(contrast, conL) || !equals(saturation, satL))) {   
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
@@ -122,8 +123,13 @@ void draw() {
     calcImageCoords();
     image(withTempChanges, imgX, imgY);
   }
+  expL = exposure;
+  conL = contrast;
+  satL = saturation;
   
-  
+}
+
+void mouseClicked(){
 }
 
 void keyPressed() {
@@ -186,4 +192,13 @@ void Submit() {
   background(100);
   gui.showGui();
   submitted = true;
+}
+
+boolean equals(float x, float y){
+  if (x == y){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
