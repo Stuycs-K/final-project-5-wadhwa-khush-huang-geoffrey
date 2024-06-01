@@ -36,6 +36,7 @@ void setup() {
   submitted = false;
   gui.button("Import");
   gui.button("Export");
+  
   sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
   sliders = new float[9];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
@@ -52,16 +53,18 @@ void setup() {
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
 }
 void draw() {
+  float exposure = sliders[0];
+  float saturation = sliders[3];
+  float contrast = sliders[2];
   for (int i = 0; i < sliders.length; i++) {
-    if (gui.slider(sliderNames[i]) > sliders[i] && withTempChanges != null) {
+    if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
       //updateImage(true);
     }
   }
   if (withTempChanges != null) {   
-    float exposure = sliders[0];
-    float saturation = sliders[3];
-    float contrast = sliders[2];
+    // restructure code, no conditional for modifications. switch to if(
+    // copy == null) then do the import stuff
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
@@ -117,7 +120,7 @@ void draw() {
   if (submitted) {
     open(userInput);
     calcImageCoords();
-    image(current, imgX, imgY);
+    image(withTempChanges, imgX, imgY);
   }
   
   
@@ -139,7 +142,7 @@ void open(String imgPath) {
     }
     catch(IOException e) {}
     current = loadImage(i.getName());
-    withTempChanges = current;
+    withTempChanges = current.copy();
     userInput = "";
     submitted = false;
 }
