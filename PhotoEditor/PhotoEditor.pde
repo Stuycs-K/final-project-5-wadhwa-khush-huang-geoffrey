@@ -23,7 +23,6 @@ import com.krab.lazy.*;
  private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
- float exposure, contrast, saturation;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -64,7 +63,6 @@ void draw() {
     float saturation = sliders[3];
     float contrast = sliders[2];
     image(withTempChanges, imgX, imgY);
-    // we want to make a copy and display the copy instead of current
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
         // exposure modification
