@@ -49,3 +49,7 @@ Notes:
 - Brightness increases by increasing the rgb values in equal proportion
 - Saturation increases by increasing the two highest rgb values
 - Contrast increase by multiplying each rgb value by the slider value
+
+### 05/29/2024-06/01/2024
+
+Moved the image modification code onto another branch. Ran into numerous problems, so spent these few days debugging
