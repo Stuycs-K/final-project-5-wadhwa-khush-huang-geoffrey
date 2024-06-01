@@ -65,7 +65,7 @@ void draw() {
       //updateImage(true);
     }
   }
-  if (withTempChanges != null && (!equals(exposure, expL) || !equals(contrast, conL) || !equals(saturation, satL))) {   
+  if (withTempChanges != null) {   
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
@@ -171,7 +171,7 @@ void calcImageCoords() {
   else {
     imgY = (1080 - current.height) / 2;  
   }
-  withTempChanges = current;
+  withTempChanges = current.copy();
 }
 
 void textInput() {
@@ -192,13 +192,4 @@ void Submit() {
   background(100);
   gui.showGui();
   submitted = true;
-}
-
-boolean equals(float x, float y){
-  if (x == y){
-    return true;
-  }
-  else{
-    return false;
-  }
 }
