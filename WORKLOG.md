@@ -23,9 +23,17 @@ Worked on redesigning Kernel approach in-class, researched other ways of doing p
 
 Continued to work on import functionality and implemented ControlP5 text input.
 
-##05/30/2024
+### 05/30/2024
 
 Finalized implementation of import(), pending error message for incorrect filenames. 
+
+### 06/01/2024
+
+Worked more on redesigning import() to use Processing file handling. Deleted old redundant code.
+
+### 06/02/2024
+
+Designing PaintBrush class.
 
 ## Geoffrey Huang
 
