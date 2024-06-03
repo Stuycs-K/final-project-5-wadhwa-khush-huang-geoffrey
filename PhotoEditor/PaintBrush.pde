@@ -17,4 +17,16 @@ public class PaintBrush {
     thickness = t;
     opacity = o;
   }
+  
+  public PImage applyPaint(PImage in, PImage destination) {
+    
+  }
+  
+  public void setColor(int red, int green, int blue) {
+    
+  }
+  
+  public void setThickness(int t) {
+    
+  }
 }
