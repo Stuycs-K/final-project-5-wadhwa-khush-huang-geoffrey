@@ -8,19 +8,13 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import com.krab.lazy.*;
  //TO BE IMPLEMENTED IN APPROPRIATE STAGES
- //private String userInput;
  private PImage current;
  private PImage withTempChanges;
  private int imgX, imgY;
- LazyGui gui;
- ControlP5 cp5;
- ControlGroup control;
- Textfield in;
+ private LazyGui gui;
  private float[] sliders;
  private String[] sliderNames;
  private Kernel[] kernels;
- private String userInput;
- private boolean submitted;
  //private Paintbrush color;
  //private color selectedColor;
  float expL, conL, satL;
@@ -28,13 +22,7 @@ import com.krab.lazy.*;
 void setup() {
   size(1920, 1080, P2D);
   background(100);
-  gui = new LazyGui(this, new LazyGuiSettings().setCellSize(26));
-  cp5 = new ControlP5(this);
-  control = new ControlGroup(cp5, "all cp5 elements");
-  in = new Textfield(cp5, control, "input", "", width/2 - 400, height/2, 800, 100);
-  in.hide();
-  userInput = "";
-  submitted = false;
+  gui = new LazyGui(this, new LazyGuiSettings().setCellSize(22));
   gui.button("Import");
   gui.button("Export");
   
@@ -116,12 +104,7 @@ void draw() {
   
   }
   if (gui.button("Import")) {
-    textInput();
-  }
-  if (submitted) {
-    open(userInput);
-    calcImageCoords();
-    image(withTempChanges, imgX, imgY);
+    selectInput("Select a file to process", "fileSelected");
   }
   expL = exposure;
   conL = contrast;
@@ -133,33 +116,16 @@ void mouseClicked(){
 }
 
 void keyPressed() {
-  if (keyCode == ENTER && in.isVisible())
-    Submit();
 }
 
-void open(String imgPath) {
-    //Copying image to data and creating a PImage with the relevant qualities
-    File i = new File(imgPath);
-    Path in = i.toPath();
-    Path out = new File("data/" + i.getName()).toPath();
-    String target = "";
-    try {
-      target = Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING).toString();
-    }
-    catch(IOException e) {}
-    current = loadImage(i.getName());
-    withTempChanges = current.copy();
-    userInput = "";
-    submitted = false;
-}
 
 void calcImageCoords() {
   int w = current.width;
   int h = current.height;
-  int startW = 180;
+  int startW = 200;
   if (current.width > width - startW) {
-    current.resize(width - startW, 0);
-    imgX = 250;
+    current.resize(width - (startW + 20), 0);
+    imgX = 180;
   }
   else {
     imgX = (1670 + current.width) / 2; 
@@ -174,22 +140,24 @@ void calcImageCoords() {
   withTempChanges = current.copy();
 }
 
-void textInput() {
-  fill(200);
-  rect(width/2 - 400, height/2 - 200, 800, 400);
-  fill(0);
-  textSize(32);
-  text("Enter the path of the image to be imported", width/2 - 275, height/2 - 150);
-  fill(255);
-  textSize(32);
-  in.show();
-  in.setFont(createFont("Times New Roman", 32));
-}
-
-void Submit() {
-  userInput = in.getText();
-  in.hide();
-  background(100);
-  gui.showGui();
-  submitted = true;
+void fileSelected(File selection) {
+  String name = selection.getName();
+  String ext = name.substring(name.lastIndexOf('.'));
+  if (ext.equals(".png") || ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".gif") || ext.equals(".tga")) {
+    current = loadImage(selection.getPath().toString());
+    withTempChanges = current;
+    calcImageCoords();
+    background(100);
+  }
+  else {
+    fill(0);
+    rect(width/2 - 200, height/2 - 100, 200, 100);
+    fill(255);
+    text("File Invalid! Please select a new file.", width/2 - 200, height/2 - 100, 200, 100);
+    try {
+      Thread.sleep(2000);
+    }  
+    catch(InterruptedException e) {}
+    selectInput("File Invalid! Please select a new file.", "fileSelected");
+  }
 }
