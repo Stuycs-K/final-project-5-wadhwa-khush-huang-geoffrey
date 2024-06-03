@@ -25,24 +25,18 @@ void setup() {
   gui.button("Import");
   gui.button("Export");
   
-  sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
-  sliders = new float[9];
+  sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
+  sliders = new float[3];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
-  sliders[1] = gui.sliderInt("Sharpness", 0, -100, 100);
-  sliders[2] = gui.slider("Contrast", 1, 1, 5);
-  sliders[3] = gui.sliderInt("Saturation", 0, -100, 100);
-  sliders[4] = gui.sliderInt("Highlights", 0, -100, 100);
-  sliders[5] = gui.sliderInt("Shadows", 0, -100, 100);
-  sliders[6] = gui.sliderInt("Tempurature", 0, -100, 100);
-  sliders[7] = gui.sliderInt("Tint", 0, -100, 100);
-  sliders[8] = gui.sliderInt("Sharpness", 0, -100, 100); 
+  sliders[1] = gui.slider("Contrast", 1, 1, 5);
+  sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
    
 }
 
 void draw() {
   float exposure = sliders[0];
-  float saturation = sliders[3];
-  float contrast = sliders[2];
+  float saturation = sliders[2];
+  float contrast = sliders[1];
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
@@ -108,20 +102,20 @@ void draw() {
 }
 
 void calcImageCoords() {
-  int startW = 200;
+  int startW = 180;
   if (current.width > width - startW) {
-    current.resize(width - (startW + 20), 0);
+    current.resize(width - startW, 0);
     imgX = 180;
   }
   else {
-    imgX = (1670 + current.width) / 2; 
+    imgX = width - ((width - startW) + current.width) / 2; 
   }
   if (current.height > height) {
     current.resize(0, height);  
     imgY = 0;
   }
   else {
-    imgY = (1080 - current.height) / 2;  
+    imgY = (height - current.height) / 2;
   }
   withTempChanges = current.copy();
 }
