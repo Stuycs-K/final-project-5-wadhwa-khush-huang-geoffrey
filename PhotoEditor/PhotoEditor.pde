@@ -108,23 +108,24 @@ void draw() {
 }
 
 void calcImageCoords() {
-  int startW = 200;
+  int startW = 180;
   if (current.width > width - startW) {
-    current.resize(width - (startW + 20), 0);
+    current.resize(width - startW, 0);
     imgX = 180;
   }
   else {
-    imgX = (1670 + current.width) / 2; 
+    imgX = width - ((width - startW) + current.width) / 2; 
   }
   if (current.height > height) {
     current.resize(0, height);  
     imgY = 0;
   }
   else {
-    imgY = (1080 - current.height) / 2;  
+    imgY = (height - current.height) / 2;
   }
   withTempChanges = current.copy();
 }
+
 
 void fileSelected(File selection) {
   String name = selection.getName();
