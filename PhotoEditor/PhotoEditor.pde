@@ -24,31 +24,27 @@ void setup() {
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(22));
   gui.button("Import");
   gui.button("Export");
+  gui.button("Clear");
   
-  sliderNames = new String[] {"Exposure", "Sharpness", "Contrast", "Saturation", "Highlights", "Shadows", "Tempurature", "Tint", "Sharpness"};
-  sliders = new float[9];
+  sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
+  sliders = new float[3];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
-  sliders[1] = gui.sliderInt("Sharpness", 0, -100, 100);
-  sliders[2] = gui.slider("Contrast", 1, 1, 5);
-  sliders[3] = gui.sliderInt("Saturation", 0, -100, 100);
-  sliders[4] = gui.sliderInt("Highlights", 0, -100, 100);
-  sliders[5] = gui.sliderInt("Shadows", 0, -100, 100);
-  sliders[6] = gui.sliderInt("Tempurature", 0, -100, 100);
-  sliders[7] = gui.sliderInt("Tint", 0, -100, 100);
-  sliders[8] = gui.sliderInt("Sharpness", 0, -100, 100); 
+  sliders[1] = gui.slider("Contrast", 1, 1, 5);
+  sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
    
 }
 
 void draw() {
   float exposure = sliders[0];
-  float saturation = sliders[3];
-  float contrast = sliders[2];
+  float saturation = sliders[2];
+  float contrast = sliders[1];
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
     }
   }
-  if (withTempChanges != null) {   
+  if (withTempChanges != null) {
+    //background(100);
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
@@ -101,6 +97,12 @@ void draw() {
   if (gui.button("Import")) {
     selectInput("Select a file to process", "fileSelected");
   }
+  if (gui.button("Clear")) {
+    background(100);
+    current = null;
+    withTempChanges = null;
+  }
+  
   expL = exposure;
   conL = contrast;
   satL = saturation;
@@ -132,7 +134,6 @@ void fileSelected(File selection) {
   String ext = name.substring(name.lastIndexOf('.'));
   if (ext.equalsIgnoreCase(".png") || ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".jpeg") || ext.equalsIgnoreCase(".gif") || ext.equalsIgnoreCase(".tga")) {
     current = loadImage(selection.getPath().toString());
-    withTempChanges = current;
     calcImageCoords();
     background(100);
   }
