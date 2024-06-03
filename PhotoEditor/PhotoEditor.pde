@@ -24,6 +24,7 @@ void setup() {
   gui = new LazyGui(this, new LazyGuiSettings().setCellSize(22));
   gui.button("Import");
   gui.button("Export");
+  gui.button("Clear");
   
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
   sliders = new float[3];
@@ -42,7 +43,8 @@ void draw() {
       sliders[i] = gui.slider(sliderNames[i]);
     }
   }
-  if (withTempChanges != null) {   
+  if (withTempChanges != null) {
+    //background(100);
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
@@ -95,6 +97,12 @@ void draw() {
   if (gui.button("Import")) {
     selectInput("Select a file to process", "fileSelected");
   }
+  if (gui.button("Clear")) {
+    background(100);
+    current = null;
+    withTempChanges = null;
+  }
+  
   expL = exposure;
   conL = contrast;
   satL = saturation;
@@ -125,7 +133,6 @@ void fileSelected(File selection) {
   String ext = name.substring(name.lastIndexOf('.'));
   if (ext.equalsIgnoreCase(".png") || ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".jpeg") || ext.equalsIgnoreCase(".gif") || ext.equalsIgnoreCase(".tga")) {
     current = loadImage(selection.getPath().toString());
-    withTempChanges = current;
     calcImageCoords();
     background(100);
   }
