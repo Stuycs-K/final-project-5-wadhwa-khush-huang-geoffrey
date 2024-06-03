@@ -50,6 +50,7 @@ void setup() {
   
   kernels = new Kernel[9];
   kernels[0] = new Kernel(new float[][] {{0, 0, 0}, {0, 1.05, 0}, {0, 0, 0}});
+  selectInput("Select a file to process", "fileSelected");
 }
 void draw() {
   for (int i = 0; i < sliders.length; i++) {
@@ -76,44 +77,6 @@ void keyPressed() {
     Submit();
 }
 
-//boolean open(String imgPath) {
-//    //Copying image to data and creating a PImage with the relevant qualities
-//    File i = new File(imgPath);
-//    Path in = i.toPath();
-//    Path out = new File("data/" + i.getName()).toPath();
-//    String target = "";
-//    try {
-//      target = Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING).toString();
-//      current = loadImage(i.getName());
-//      withTempChanges = current;
-//      userInput = "";
-//      submitted = false;
-//      return true;
-//    }
-//    catch(IOException e) {
-//      e.printStackTrace();
-//      return false;
-//    }
-    
-//}
-
-
-void open(String imgPath) {
-    //Copying image to data and creating a PImage with the relevant qualities
-    File i = new File(imgPath);
-    Path in = i.toPath();
-    Path out = new File("data/" + i.getName()).toPath();
-    String target = "";
-    try {
-      target = Files.copy(in, out, StandardCopyOption.REPLACE_EXISTING).toString();
-    }
-    catch(IOException e) {}
-    current = loadImage(i.getName());
-    withTempChanges = current;
-    userInput = "";
-    submitted = false;
-}
-
 void calcImageCoords() {
   int w = current.width;
   int h = current.height;
@@ -135,18 +98,6 @@ void calcImageCoords() {
   withTempChanges = current;
 }
 
-void textInput() {
-  fill(200);
-  rect(width/2 - 400, height/2 - 200, 800, 400);
-  fill(0);
-  textSize(32);
-  text("Enter the path of the image to be imported", width/2 - 275, height/2 - 150);
-  fill(255);
-  textSize(32);
-  in.show();
-  in.setFont(createFont("Times New Roman", 32));
-}
-
 void Submit() {
   userInput = in.getText();
   in.setText("");
@@ -166,4 +117,10 @@ void Submit() {
   //}
   
   
+}
+
+void fileSelected(File selection) {
+  String name = selection.getName();
+  String ext = name.substring(name.lastIndexOf('.'));
+  if (
 }
