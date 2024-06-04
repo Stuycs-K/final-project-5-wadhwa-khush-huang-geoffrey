@@ -25,6 +25,7 @@ void setup() {
   gui.button("Import");
   gui.button("Export");
   gui.button("Clear");
+  gui.button("Monocrhome");
   
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
   sliders = new float[3];
@@ -88,8 +89,11 @@ void draw() {
         green = Math.min(255, contrast * green);
         blue = Math.min(255, contrast * blue);
         
+        
+       
         color c = color(red, green, blue);
         withTempChanges.set(i,j,(int) c);
+  
       }
   }
   
