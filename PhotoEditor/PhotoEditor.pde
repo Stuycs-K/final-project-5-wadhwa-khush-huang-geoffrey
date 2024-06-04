@@ -90,7 +90,12 @@ void draw() {
         blue = Math.min(255, contrast * blue);
         
         
-       
+        if (gui.button("Monochrome")){
+          red *= .3;
+          green *= .6;
+          blue *= .11;
+        }
+
         color c = color(red, green, blue);
         withTempChanges.set(i,j,(int) c);
   
