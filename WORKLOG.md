@@ -61,3 +61,11 @@ Notes:
 ### 05/29/2024-06/01/2024
 
 Moved the image modification code onto another branch. Ran into numerous problems, so spent these few days debugging
+
+### 06/02/2024-06/03/2024
+
+Worked on the import method
+
+### 06/04/2024-06/05/2024
+
+Worked on the monochrome function
