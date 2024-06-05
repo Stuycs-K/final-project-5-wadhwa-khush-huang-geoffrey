@@ -805,6 +805,11 @@
           "className": "FolderNode",
           "path": "saves/autosave rules",
           "type": "FOLDER"
+        },
+        {
+          "className": "SaveItemNode",
+          "path": "saves/auto",
+          "type": "TRANSIENT"
         }
       ],
       "className": "SaveFolderNode",
@@ -827,7 +832,7 @@
       "type": "TRANSIENT"
     },
     {
-      "valueFloat": 0.0,
+      "valueFloat": 10.199994,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderIntNode",
@@ -843,11 +848,19 @@
       "type": "VALUE"
     },
     {
-      "valueFloat": 0.0,
+      "valueFloat": 15.799994,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderIntNode",
       "path": "Saturation",
+      "type": "VALUE"
+    },
+    {
+      "valueFloat": 1.0,
+      "currentPrecisionIndex": 2,
+      "valueFloatPrecision": 0.01,
+      "className": "SliderIntNode",
+      "path": "Monochrome",
       "type": "VALUE"
     }
   ],

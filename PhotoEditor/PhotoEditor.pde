@@ -25,13 +25,13 @@ void setup() {
   gui.button("Import");
   gui.button("Export");
   gui.button("Clear");
-  gui.button("Monocrhome");
   
-  sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
-  sliders = new float[3];
+  sliderNames = new String[] {"Exposure", "Contrast", "Saturation", "Monochrome"};
+  sliders = new float[4];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
   sliders[1] = gui.slider("Contrast", 1, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
+  sliders[3] = gui.sliderInt("Monochrome", 0, 0, 1);
    
 }
 
@@ -89,14 +89,14 @@ void draw() {
         green = Math.min(255, contrast * green);
         blue = Math.min(255, contrast * blue);
         
+        color c;
         
-        if (gui.button("Monochrome")){
-          red *= .3;
-          green *= .6;
-          blue *= .11;
+        if (sliders[3] == 1){
+          c = color((red + green + blue)/3);
         }
-
-        color c = color(red, green, blue);
+        else{
+          c = color(red, green, blue);
+        }
         withTempChanges.set(i,j,(int) c);
   
       }
