@@ -817,7 +817,11 @@
       "type": "FOLDER"
     },
     {
+<<<<<<< HEAD
       "valueFloat": 51.0,
+=======
+      "valueFloat": 99.0,
+>>>>>>> 6f23e49af7ca9b2c1b372428b4a8101a865375e8
       "currentPrecisionIndex": 4,
       "valueFloatPrecision": 1.0,
       "className": "SliderNode",
@@ -825,7 +829,7 @@
       "type": "VALUE"
     },
     {
-      "valueFloat": 32.699993,
+      "valueFloat": 5.9000115,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
       "className": "SliderNode",
