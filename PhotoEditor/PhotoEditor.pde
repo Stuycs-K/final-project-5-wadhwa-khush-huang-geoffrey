@@ -39,6 +39,7 @@ void draw() {
   float exposure = sliders[0];
   float saturation = sliders[2];
   float contrast = sliders[1];
+  float monochrome = sliders[3];
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
@@ -47,60 +48,7 @@ void draw() {
   if (withTempChanges != null) {
     //background(100);
     image(withTempChanges, imgX, imgY);
-    for (int i = 0; i < current.width; i++){
-       for (int j = 0; j < current.height; j++){
-        // exposure modification
-        float red = red(current.get(i, j)) + exposure;
-        float green = green(current.get(i, j)) + exposure;
-        float blue = blue(current.get(i, j)) + exposure;  
-        
-        // saturation modification
-        float max = Math.max(Math.max(red, green), blue);
-        if (red == max){
-          red += saturation;
-          if (green == Math.max(green, blue)){
-            green += saturation;
-          }
-          else{
-            blue += saturation;
-          }
-        }
-        if (green == max){
-          green += saturation;
-          if (red == Math.max(red, blue)){
-            red += saturation;
-          }
-          else{
-            blue += saturation;
-          }
-        }
-        if (blue == max){
-          blue += saturation;
-          if (green == Math.max(green, red)){
-            green += saturation;
-          }
-          else{
-            red += saturation;
-          }
-        }
-        
-        // contrast modification
-        red = Math.min(255, contrast * red);
-        green = Math.min(255, contrast * green);
-        blue = Math.min(255, contrast * blue);
-        
-        color c;
-        
-        if (sliders[3] == 1){
-          c = color((red + green + blue)/3);
-        }
-        else{
-          c = color(red, green, blue);
-        }
-        withTempChanges.set(i,j,(int) c);
-  
-      }
-  }
+    modify(exposure, contrast, saturation, monochrome);
   
   }
   if (gui.button("Import")) {
@@ -152,5 +100,62 @@ void fileSelected(File selection) {
     //}  
     //catch(InterruptedException e) {}
     selectInput("File Invalid! Please select a new file.", "fileSelected");
+  }
+}
+
+void modify(float exposure, float contrast, float saturation, float monochrome){
+  for (int i = 0; i < current.width; i++){
+       for (int j = 0; j < current.height; j++){
+        // exposure modification
+        float red = red(current.get(i, j)) + exposure;
+        float green = green(current.get(i, j)) + exposure;
+        float blue = blue(current.get(i, j)) + exposure;  
+        
+        // saturation modification
+        float max = Math.max(Math.max(red, green), blue);
+        if (red == max){
+          red += saturation;
+          if (green == Math.max(green, blue)){
+            green += saturation;
+          }
+          else{
+            blue += saturation;
+          }
+        }
+        if (green == max){
+          green += saturation;
+          if (red == Math.max(red, blue)){
+            red += saturation;
+          }
+          else{
+            blue += saturation;
+          }
+        }
+        if (blue == max){
+          blue += saturation;
+          if (green == Math.max(green, red)){
+            green += saturation;
+          }
+          else{
+            red += saturation;
+          }
+        }
+        
+        // contrast modification
+        red = Math.min(255, contrast * red);
+        green = Math.min(255, contrast * green);
+        blue = Math.min(255, contrast * blue);
+        
+        color c;
+        
+        if (monochrome == 1){
+          c = color((red + green + blue)/3);
+        }
+        else{
+          c = color(red, green, blue);
+        }
+        withTempChanges.set(i,j,(int) c);
+  
+      }
   }
 }
