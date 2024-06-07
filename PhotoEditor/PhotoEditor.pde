@@ -1,5 +1,4 @@
 import com.krab.lazy.*;
-import controlP5.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.io.File;
@@ -7,6 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import com.krab.lazy.*;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+
  //TO BE IMPLEMENTED IN APPROPRIATE STAGES
  private PImage current;
  private PImage withTempChanges;
@@ -49,9 +51,9 @@ void draw() {
     }
   }
   if (withTempChanges != null) {
-    //image(withTempChanges, imgX, imgY);
+    image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
-       for (int j = 0; j < current.height; j++){
+      for (int j = 0; j < current.height; j++){
         // exposure modification
         float red = red(current.get(i, j)) + exposure;
         float green = green(current.get(i, j)) + exposure;
@@ -175,4 +177,12 @@ void updatePaintbrush() {
   myColor = gui.colorPicker("Brush Color");
   brush.setColor(color(myColor.hex));
   brush.setSize(gui.slider("Brush Size"));
+}
+
+void saveImage() {
+  image(current, imgX, imgY);
+  saveFrame("temp.png");
+  File f = new File("temp.png");
+  BufferedImage screen = ImageIO.read(f);
+  BufferedImage pic = screen.getSubimage(imgX, imgY, imgX + current.width, imgY + current.height);
 }
