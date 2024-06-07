@@ -12,7 +12,7 @@ public class PaintBrush {
     size = s;
   }
   
-  public PImage applyPaint(PImage in, int imgX, int imgY) {
+  public PImage applyPaint(PImage in, PImage destination, int imgX, int imgY) {
     float startX, startY, endX, endY;
     int sx, sy, ex, ey;
     if (mouseX - size <= imgX)
@@ -37,7 +37,7 @@ public class PaintBrush {
     ey = floor(endY);
     //
     
-    PImage toEdit = in.get(sx, sy,                             ex - sx, ey - sy);
+    PImage toEdit = in.get(sx, sy, ex - sx, ey - sy);
     for (int x = 0; x < ex - sx; x++) {
       for (int y = 0; y < ey -sy; y++) {
         toEdit.set(x, y, PImage.blendColor(toEdit.get(x, y), c, BLEND));
@@ -48,8 +48,7 @@ public class PaintBrush {
     //  toEdit.pixels[i] = 0;//PImage.blendColor(pixels[i], c, BLEND);
     //}
     //toEdit.updatePixels();
-    PImage out = in.copy();
-    out.set(sx, sy, toEdit);
+    destination.set(sx, sy, toEdit);
     return out;
   }
   

@@ -124,7 +124,8 @@ void mouseClicked() {
     System.out.println(inBoundsX + " " +inBoundsY);
     if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
       updatePaintbrush();
-      withTempChanges = brush.applyPaint(current);
+      withTempChanges = brush.applyPaint(current, withTempChanges, imgX, imgY);
+      image(withTempChanges, imgX, imgY);
     }    
   }
 
