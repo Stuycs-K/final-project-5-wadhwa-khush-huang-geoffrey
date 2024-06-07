@@ -120,7 +120,6 @@ void mouseClicked() {
     updatePaintbrush();
     withTempChanges = applyPaint(current);
   }
-  
 }
 
 void calcImageCoords() {
