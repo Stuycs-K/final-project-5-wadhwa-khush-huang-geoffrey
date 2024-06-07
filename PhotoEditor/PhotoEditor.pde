@@ -41,15 +41,24 @@ void setup() {
 }
 
 void draw() {
-  background(100); //if this line isn't present, the gui wont erase after being moved/closed. makes it super slow tho.
-  float exposure = sliders[0];
-  float saturation = sliders[2];
-  float contrast = sliders[1];
+  //background(100); //if this line isn't present, the gui wont erase after being moved/closed. makes it super slow tho.
+  if (gui.button("Clear")) {
+    background(100);
+    current = null;
+    withTempChanges = null;
+  }
+  if (gui.button("Update Save")) {
+    current = withTempChanges;  
+    resetSliders();
+  }
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
     }
   }
+  float exposure = sliders[0];
+  float saturation = sliders[2];
+  float contrast = sliders[1];
   if (withTempChanges != null) {
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
@@ -104,22 +113,28 @@ void draw() {
   if (gui.button("Import")) {
     selectInput("Select a file to process", "fileSelected");
   }
-  if (gui.button("Clear")) {
-    background(100);
-    current = null;
-    withTempChanges = null;
-  }
+
   
   expL = exposure;
   conL = contrast;
   satL = saturation;
   myColor = gui.colorPicker("Brush Color");
-  if (gui.button("Update Save")) {
-    current = withTempChanges;  
+
+}
+
+void resetSliders() {
+  for (String name : sliderNames) {
+    if (name.equals("Contrast")) {
+      gui.sliderSet(name, 1);  
+    }
+    else {
+      gui.sliderSet(name, 0);  
+    }
   }
 }
 
 void mousePressed() {
+  //try changing to mousePressed boolean method in draw()
   if (withTempChanges != null) {
     boolean inBoundsX = mouseX >= imgX && mouseX <= (imgX + withTempChanges.width);
     boolean inBoundsY = mouseY >= imgY && mouseY <= (imgY + withTempChanges.height);
@@ -185,15 +200,11 @@ void saveImage() {
   int w = current.width;
   int h = current.height;
   File f = new File("temp.png");
-  BufferedImage scr = new BufferedImage();
   try {
-    scr = ImageIO.read(f);
-  }
-  catch (IOException e) {}
-  BufferedImage pic = scr.getSubimage(imgX, imgY, w, h);
-  try { 
+    BufferedImage scr = ImageIO.read(f);
+    BufferedImage pic = scr.getSubimage(imgX, imgY, w, h);  
     File output = new File("image.png"); 
     ImageIO.write(pic, "png", output); 
-  } 
-  catch (IOException e) {} 
+  }
+  catch (IOException e) {}
 }
