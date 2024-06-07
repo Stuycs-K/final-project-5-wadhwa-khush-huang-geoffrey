@@ -40,7 +40,7 @@ public class PaintBrush {
     PImage toEdit = in.get(sx, sy, ex - sx, ey - sy);
     for (int x = 0; x < ex - sx; x++) {
       for (int y = 0; y < ey -sy; y++) {
-        toEdit.set(x, y, PImage.blendColor(toEdit.get(x, y), c, ADD));
+        toEdit.set(x, y, PImage.blendColor(toEdit.get(x, y), c, BLEND));
       }
     }
       
