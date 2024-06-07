@@ -49,8 +49,7 @@ void draw() {
     }
   }
   if (withTempChanges != null) {
-    //background(100);
-    image(withTempChanges, imgX, imgY);
+    //image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
         // exposure modification
@@ -96,6 +95,7 @@ void draw() {
         color c = color(red, green, blue);
         withTempChanges.set(i,j,(int) c);
       }
+    image(withTempChanges, imgX, imgY);
   }
   
   }
@@ -117,15 +117,18 @@ void draw() {
   }
 }
 
-void mouseClicked() {
+void mousePressed() {
   if (withTempChanges != null) {
     boolean inBoundsX = mouseX >= imgX && mouseX <= (imgX + withTempChanges.width);
     boolean inBoundsY = mouseY >= imgY && mouseY <= (imgY + withTempChanges.height);
     System.out.println(inBoundsX + " " +inBoundsY);
     if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
       updatePaintbrush();
-      withTempChanges = brush.applyPaint(current, withTempChanges, imgX, imgY);
-      image(withTempChanges, imgX, imgY);
+      withTempChanges = brush.applyPaint(withTempChanges, withTempChanges, imgX, imgY);
+      try {
+        Thread.sleep(100);
+      }
+      catch(InterruptedException e) {}
     }    
   }
 
