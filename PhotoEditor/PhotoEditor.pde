@@ -34,6 +34,7 @@ void setup() {
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
   myColor = gui.colorPicker("Brush Color", 0.5, 0.5, 0.5);
   gui.slider("Brush Size", 10, 0, 100);
+  brush = new PaintBrush(color(myColor.hex));
 }
 
 void draw() {
@@ -117,7 +118,7 @@ void mouseClicked() {
   if (withTempChanges != null) {
     boolean inBoundsX = mouseX >= imgX && mouseX <= imgX + withTempChanges.width;
     boolean inBoundsY = mouseY >= imgY && mouseY <= imgY + withTempChanges.height;
-    if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
+    if (gui.toggle("Paintbrush") /*&& inBoundsX && inBoundsY*/)  {
       updatePaintbrush();
       withTempChanges = brush.applyPaint(current);
     }    
