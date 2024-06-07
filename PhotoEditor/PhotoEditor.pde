@@ -33,10 +33,11 @@ void setup() {
   sliders[1] = gui.slider("Contrast", 1, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
   myColor = gui.colorPicker("Brush Color", 0.5, 0.5, 0.5);
-  gui.slider("Brush Thickness", 50, 0, 100);
+  gui.slider("Brush Size", 10, 0, 100);
 }
 
 void draw() {
+  background(100); //if this line isn't present, the gui wont erase after being moved/closed. makes it super slow tho.
   float exposure = sliders[0];
   float saturation = sliders[2];
   float contrast = sliders[1];
@@ -108,10 +109,16 @@ void draw() {
   expL = exposure;
   conL = contrast;
   satL = saturation;
+  myColor = gui.colorPicker("Brush Color");
   
-  if (myColor.hex != colorPicker("Brush Color", 0.5).hex) {
-    myColor = colorPicker("Brush Color");
-    background(100);
+}
+
+void mouseClicked() {
+  boolean inBoundsX = mouseX >= imgX && mouseX <= imgX + withTempChanges.width;
+  boolean inBoundsY = mouseY >= imgY && mouseY <= imgY + withTempChanges.height;
+  if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
+    updatePaintbrush();
+    withTempChanges = applyPaint(current);
   }
   
 }
@@ -154,5 +161,7 @@ void fileSelected(File selection) {
 }
 
 void updatePaintbrush() {
-  
+  myColor = gui.colorPicker("Brush Color");
+  brush.setColor(color(myColor.hex));
+  brush.setSize(gui.slider("Brush Size"));
 }

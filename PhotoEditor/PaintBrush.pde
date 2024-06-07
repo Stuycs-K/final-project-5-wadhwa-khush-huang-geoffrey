@@ -1,32 +1,26 @@
 public class PaintBrush {
   color c;
-  int r, g, b;
-  float thickness, opacity;
+  float size;
   
-  public PaintBrush(int red, int green, int blue) {
-    r = red;
-    g = green;
-    b = blue;
-    c = color(r, g, b);
-    thickness = 50.0;
-    opacity = 100.0;
+  public PaintBrush(color col) {
+    c = col
+    size = 10.0
   }
   
-  public PaintBrush(int red, int green, int blue, float t, float o) {
+  public PaintBrush(int red, int green, int blue, float s) {
     this(red, green, blue);
-    thickness = t;
-    opacity = o;
+    size = s;
   }
   
   public PImage applyPaint(PImage in, PImage destination) {
     return new PImage();
   }
   
-  public void setColor(int red, int green, int blue) {
-    
+  public void setColor(color col) {
+    c = col;
   }
   
-  public void setThickness(int t) {
-    
+  public void setSize(int s) {
+    size = s;
   }
 }
