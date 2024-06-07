@@ -182,7 +182,18 @@ void updatePaintbrush() {
 void saveImage() {
   image(current, imgX, imgY);
   saveFrame("temp.png");
+  int w = current.width;
+  int h = current.height;
   File f = new File("temp.png");
-  BufferedImage screen = ImageIO.read(f);
-  BufferedImage pic = screen.getSubimage(imgX, imgY, imgX + current.width, imgY + current.height);
+  BufferedImage scr = new BufferedImage();
+  try {
+    scr = ImageIO.read(f);
+  }
+  catch (IOException e) {}
+  BufferedImage pic = scr.getSubimage(imgX, imgY, w, h);
+  try { 
+    File output = new File("image.png"); 
+    ImageIO.write(pic, "png", output); 
+  } 
+  catch (IOException e) {} 
 }
