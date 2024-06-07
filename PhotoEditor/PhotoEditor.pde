@@ -14,8 +14,8 @@ import com.krab.lazy.*;
  private LazyGui gui;
  private float[] sliders;
  private String[] sliderNames;
- //private Paintbrush color;
- //private color selectedColor;
+ private PaintBrush brush;
+ private PickerColor myColor;
  float expL, conL, satL;
 
 void setup() {
@@ -25,13 +25,15 @@ void setup() {
   gui.button("Import");
   gui.button("Export");
   gui.button("Clear");
+  gui.toggle("Paintbrush");
   
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
   sliders = new float[3];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
   sliders[1] = gui.slider("Contrast", 1, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
-   
+  myColor = gui.colorPicker("Brush Color", 0.5, 0.5, 0.5);
+  gui.slider("Brush Thickness", 50, 0, 100);
 }
 
 void draw() {
@@ -107,6 +109,11 @@ void draw() {
   conL = contrast;
   satL = saturation;
   
+  if (myColor.hex != colorPicker("Brush Color", 0.5).hex) {
+    myColor = colorPicker("Brush Color");
+    background(100);
+  }
+  
 }
 
 void calcImageCoords() {
@@ -144,4 +151,8 @@ void fileSelected(File selection) {
     //catch(InterruptedException e) {}
     selectInput("File Invalid! Please select a new file.", "fileSelected");
   }
+}
+
+void updatePaintbrush() {
+  
 }

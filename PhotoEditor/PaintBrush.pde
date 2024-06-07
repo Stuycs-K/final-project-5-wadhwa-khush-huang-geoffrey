@@ -19,7 +19,7 @@ public class PaintBrush {
   }
   
   public PImage applyPaint(PImage in, PImage destination) {
-    
+    return new PImage();
   }
   
   public void setColor(int red, int green, int blue) {
