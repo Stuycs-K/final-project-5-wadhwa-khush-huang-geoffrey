@@ -832,9 +832,9 @@
       "type": "TRANSIENT"
     },
     {
-      "valueFloat": -1.0,
-      "currentPrecisionIndex": 4,
-      "valueFloatPrecision": 1.0,
+      "valueFloat": 0.0,
+      "currentPrecisionIndex": 3,
+      "valueFloatPrecision": 0.1,
       "className": "SliderIntNode",
       "path": "Exposure",
       "type": "VALUE"
@@ -843,20 +843,20 @@
       "valueFloat": 1.0,
       "currentPrecisionIndex": 3,
       "valueFloatPrecision": 0.1,
-      "className": "SliderNode",
+      "className": "SliderIntNode",
       "path": "Contrast",
       "type": "VALUE"
     },
     {
-      "valueFloat": 17.500004,
-      "currentPrecisionIndex": 3,
-      "valueFloatPrecision": 0.1,
+      "valueFloat": 100.0,
+      "currentPrecisionIndex": 4,
+      "valueFloatPrecision": 1.0,
       "className": "SliderIntNode",
       "path": "Saturation",
       "type": "VALUE"
     },
     {
-      "valueFloat": 0.96000016,
+      "valueFloat": 1.0,
       "currentPrecisionIndex": 2,
       "valueFloatPrecision": 0.01,
       "className": "SliderIntNode",
