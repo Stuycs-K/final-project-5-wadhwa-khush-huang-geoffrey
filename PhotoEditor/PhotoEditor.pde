@@ -25,6 +25,7 @@ void setup() {
   gui.button("Import");
   gui.button("Export");
   gui.button("Clear");
+  gui.button("Update Save");
   gui.toggle("Paintbrush");
   
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
@@ -111,14 +112,17 @@ void draw() {
   conL = contrast;
   satL = saturation;
   myColor = gui.colorPicker("Brush Color");
-  
+  if (gui.button("Update Save")) {
+    current = withTempChanges;  
+  }
 }
 
 void mouseClicked() {
   if (withTempChanges != null) {
-    boolean inBoundsX = mouseX >= imgX && mouseX <= imgX + withTempChanges.width;
-    boolean inBoundsY = mouseY >= imgY && mouseY <= imgY + withTempChanges.height;
-    if (gui.toggle("Paintbrush") /*&& inBoundsX && inBoundsY*/)  {
+    boolean inBoundsX = mouseX >= imgX && mouseX <= (imgX + withTempChanges.width);
+    boolean inBoundsY = mouseY >= imgY && mouseY <= (imgY + withTempChanges.height);
+    System.out.println(inBoundsX + " " +inBoundsY);
+    if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
       updatePaintbrush();
       withTempChanges = brush.applyPaint(current);
     }    

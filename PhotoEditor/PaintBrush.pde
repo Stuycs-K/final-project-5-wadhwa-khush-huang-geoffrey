@@ -39,7 +39,7 @@ public class PaintBrush {
     
     PImage toEdit = in.get(sx, sy, ex - sx, ey - sy);
     for (int i = 0; i < toEdit.pixels.length; i++) {
-      toEdit.pixels[i] = PImage.blendColor(pixels[i], c, ADD);  
+      toEdit.pixels[i] = 0;//PImage.blendColor(pixels[i], c, BLEND);
     }
     toEdit.updatePixels();
     PImage out = in.copy();
