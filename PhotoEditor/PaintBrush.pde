@@ -3,17 +3,18 @@ public class PaintBrush {
   float size;
   
   public PaintBrush(color col) {
-    c = col
-    size = 10.0
+    c = col;
+    size = 10.0;
   }
   
   public PaintBrush(int red, int green, int blue, float s) {
-    this(red, green, blue);
+    this(color(red, green, blue));
     size = s;
   }
   
   public PImage applyPaint(PImage in) {
-    int startX, startY, endX, endY;
+    float startX, startY, endX, endY;
+    int sx, sy, ex, ey;
     if (mouseX - size <= 0)
       startX = 0;
     else
@@ -30,21 +31,27 @@ public class PaintBrush {
       endY = in.height;
     else
       endY = mouseY + size;
+    sx = floor(startX);
+    sy = floor(startY);
+    ex = floor(endX);
+    ey = floor(endY);
     //
-    PImage toEdit = in.get(startX, startY, endX - startX, endY - startY);
+    
+    PImage toEdit = in.get(sx, sy, ex - sx, ey - sy);
     for (int i = 0; i < toEdit.pixels.length; i++) {
-      toEdit.pixels[i] = toEdit.blendColor(pixels[i], c);  
+      toEdit.pixels[i] = toEdit.blendColor(pixels[i], c, BLEND);  
     }
     toEdit.updatePixels();
     PImage out = in.copy();
-    out.set(startX, startY, toEdit);
+    out.set(sx, sy, toEdit);
+    return out;
   }
   
   public void setColor(color col) {
     c = col;
   }
   
-  public void setSize(int s) {
+  public void setSize(float s) {
     size = s;
   }
 }

@@ -114,12 +114,15 @@ void draw() {
 }
 
 void mouseClicked() {
-  boolean inBoundsX = mouseX >= imgX && mouseX <= imgX + withTempChanges.width;
-  boolean inBoundsY = mouseY >= imgY && mouseY <= imgY + withTempChanges.height;
-  if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
-    updatePaintbrush();
-    withTempChanges = applyPaint(current);
+  if (withTempChanges != null) {
+    boolean inBoundsX = mouseX >= imgX && mouseX <= imgX + withTempChanges.width;
+    boolean inBoundsY = mouseY >= imgY && mouseY <= imgY + withTempChanges.height;
+    if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
+      updatePaintbrush();
+      withTempChanges = brush.applyPaint(current);
+    }    
   }
+
 }
 
 void calcImageCoords() {
