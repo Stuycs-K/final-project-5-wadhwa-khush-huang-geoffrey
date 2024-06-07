@@ -35,6 +35,14 @@ Worked more on redesigning import() to use Processing file handling. Deleted old
 
 Designing PaintBrush class.
 
+### 06/04/2024
+
+Continued creating basic design elements of Paintbrush.
+
+### 06/06/2024
+
+Struggling to applyPaint() to images. Basic design elements incorporated and the method works, but image is not displaying properly.
+
 ## Geoffrey Huang
 
 ### 05/22/2024
