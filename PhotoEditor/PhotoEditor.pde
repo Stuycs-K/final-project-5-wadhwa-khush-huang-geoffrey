@@ -16,7 +16,6 @@ import com.krab.lazy.*;
  private String[] sliderNames;
  //private Paintbrush color;
  //private color selectedColor;
- float expL, conL, satL;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -29,7 +28,7 @@ void setup() {
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
   sliders = new float[3];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
-  sliders[1] = gui.slider("Contrast", 1, 1, 5);
+  sliders[1] = gui.sliderInt("Contrast", 1, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
    
 }
@@ -44,7 +43,7 @@ void draw() {
     }
   }
   if (withTempChanges != null) {
-    //background(100);
+    background(100);
     image(withTempChanges, imgX, imgY);
     for (int i = 0; i < current.width; i++){
        for (int j = 0; j < current.height; j++){
@@ -102,10 +101,6 @@ void draw() {
     current = null;
     withTempChanges = null;
   }
-  
-  expL = exposure;
-  conL = contrast;
-  satL = saturation;
   
 }
 
