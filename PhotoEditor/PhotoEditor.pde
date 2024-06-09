@@ -35,7 +35,7 @@ void setup() {
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation", "Monochrome"};
   sliders = new float[4];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
-  sliders[1] = gui.sliderInt("Contrast", 1, 1, 5);
+  sliders[1] = gui.slider("Contrast", 0.001, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
   sliders[3] = gui.sliderInt("Monochrome", 0, 0, 1);
   numSaves = 0;
@@ -173,20 +173,36 @@ void mouseDragged() {
 }
 
 void calcImageCoords() {
+  if (current.width > current.height) {
+    calcWidth();
+    calcHeight();
+  }
+  else {
+    calcHeight();
+    calcWidth();
+  }
+  withTempChanges = current.copy();
+}
+
+void calcWidth() {
   int startW = 180;
   if (current.width > width - startW) {
     current.resize(width - startW, 0);
     imgX = 180;
-  } else {
+  } 
+  else {
     imgX = width - ((width - startW) + current.width) / 2;
   }
+}
+
+void calcHeight() {
   if (current.height > height) {
     current.resize(0, height);
     imgY = 0;
-  } else {
+  } 
+  else {
     imgY = (height - current.height) / 2;
   }
-  withTempChanges = current.copy();
 }
 
 
