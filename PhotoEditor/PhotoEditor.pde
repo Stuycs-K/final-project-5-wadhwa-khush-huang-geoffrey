@@ -87,43 +87,6 @@ void draw() {
   myColor = gui.colorPicker("Brush Color");
 }
 
-void calcImageCoords() {
-  int startW = 180;
-  if (current.width > width - startW) {
-    current.resize(width - startW, 0);
-    imgX = 180;
-  }
-  else {
-    imgX = width - ((width - startW) + current.width) / 2; 
-  }
-  if (current.height > height) {
-    current.resize(0, height);  
-    imgY = 0;
-  }
-  else {
-    imgY = (height - current.height) / 2;
-  }
-  withTempChanges = current.copy();
-}
-
-
-void fileSelected(File selection) {
-  String name = selection.getName();
-  String ext = name.substring(name.lastIndexOf('.'));
-  if (ext.equalsIgnoreCase(".png") || ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".jpeg") || ext.equalsIgnoreCase(".gif") || ext.equalsIgnoreCase(".tga")) {
-    current = loadImage(selection.getPath().toString());
-    calcImageCoords();
-    background(100);
-  }
-  else {
-    //try {
-    //  Thread.sleep(500);
-    //}  
-    //catch(InterruptedException e) {}
-    selectInput("File Invalid! Please select a new file.", "fileSelected");
-  }
-}
-
 void modify(float exposure, float contrast, float saturation, float monochrome){
     for (int i = 0; i < current.width; i++){
       for (int j = 0; j < current.height; j++){
