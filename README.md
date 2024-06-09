@@ -28,7 +28,7 @@ REQUIRED LIBRARY: LazyGui
 4. Before you Update Save after using the PaintBrush, press the Restore Save button to restore your last save. 
 - You may also apply additional filters before this step. This function will undo all filters/paint since the last save.
 5. Add some more paint, Update Save, and press Export to resolve your image to a file.
-- Export works on the last save of your image. If you do not save your image before exporting, it will refer to the most recent save and will not include your changes since that save.
+- Export automatically updates your save to the most recent changes!
 - You can export multiple times! The exported files will be located in the Sketch folder and will be named "image[export number].png". Export, make some changes, save, and export again to see this in action.
 - So long as an image is on screen, export will ALWAYS create a file in the Sketch folder as an export. It will not provide a confirmation message.
 
