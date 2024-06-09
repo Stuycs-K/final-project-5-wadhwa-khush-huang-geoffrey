@@ -133,7 +133,11 @@ void resetSliders() {
   }
 }
 
-void mousePressed() {
+void mouseClicked() {
+  mouseDragged();  
+}
+
+void mouseDragged() {
   //try changing to mousePressed boolean method in draw()
   if (withTempChanges != null) {
     boolean inBoundsX = mouseX >= imgX && mouseX <= (imgX + withTempChanges.width);
@@ -141,11 +145,11 @@ void mousePressed() {
     System.out.println(inBoundsX + " " +inBoundsY);
     if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
       updatePaintbrush();
-      withTempChanges = brush.applyPaint(withTempChanges, withTempChanges, imgX, imgY);
-      try {
-        Thread.sleep(100);
-      }
-      catch(InterruptedException e) {}
+      current = brush.applyPaint(current, current, imgX, imgY);
+      //try {
+      //  Thread.sleep(100);
+      //}
+      //catch(InterruptedException e) {}
     }    
   }
 
