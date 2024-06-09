@@ -93,3 +93,7 @@ Worked on the monochrome function
 ### 06/06/2024
 
 MacOS error is preventing me from running code. I will need to condense the image modification code in class tomorrow.
+
+### 06/07/2024 - 06/09/2024
+
+Condensed the draw method. Pair programmed on call with Khush because computer broke.
