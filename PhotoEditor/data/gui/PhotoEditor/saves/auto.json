@@ -857,7 +857,7 @@
       "type": "TRANSIENT"
     },
     {
-      "valueBoolean": false,
+      "valueBoolean": true,
       "className": "ToggleNode",
       "path": "Paintbrush",
       "type": "VALUE"

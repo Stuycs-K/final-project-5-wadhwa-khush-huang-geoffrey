@@ -212,16 +212,18 @@ void updatePaintbrush() {
 }
 
 void saveImage() {
+  current = withTempChanges.copy();
+  resetSliders();
   image(current, imgX, imgY);
   save("temp.jpeg");
   int w = current.width;
   int h = current.height;
-  File f = new File("temp.jpeg");
-  System.out.println(f.getPath());
+  File f = new File(sketchPath() + "/temp.jpeg");
+  System.out.println(f.getAbsolutePath());
   try {
     BufferedImage scr = ImageIO.read(f);
     BufferedImage pic = scr.getSubimage(imgX, imgY, w, h);
-    File output = new File("image.jpeg");
+    File output = new File(sketchPath() + "/image.jpeg");
     ImageIO.write(pic, "jpeg", output);
   }
   catch (IOException e) {
