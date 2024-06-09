@@ -43,6 +43,18 @@ Continued creating basic design elements of Paintbrush.
 
 Struggling to applyPaint() to images. Basic design elements incorporated and the method works, but image is not displaying properly.
 
+### 06/07/2024
+
+applyPaint() function is working but debugging necessary upon merge with updated main branch.
+
+### 06/08/2024
+
+no commits because of failed merge. Rolling back on non-working PaintBrush class code.
+
+### 06/09/2024
+
+Worked on call with Geoffrey to debug the PaintBrush display. All is now working! Also added a working export() function. Updating planning document and updating UML diagram to match. 
+
 ## Geoffrey Huang
 
 ### 05/22/2024
