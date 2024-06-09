@@ -35,7 +35,7 @@ void setup() {
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation", "Monochrome"};
   sliders = new float[4];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
-  sliders[1] = gui.slider("Contrast", 0.001, 1, 5);
+  sliders[1] = gui.slider("Contrast", 0, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
   sliders[3] = gui.sliderInt("Monochrome", 0, 0, 1);
   numSaves = 0;
@@ -160,7 +160,6 @@ void mouseDragged() {
   if (withTempChanges != null) {
     boolean inBoundsX = mouseX >= imgX && mouseX <= (imgX + withTempChanges.width);
     boolean inBoundsY = mouseY >= imgY && mouseY <= (imgY + withTempChanges.height);
-    System.out.println(inBoundsX + " " +inBoundsY);
     if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY) {
       updatePaintbrush();
       current = brush.applyPaint(current, imgX, imgY);
@@ -245,6 +244,5 @@ void saveImage() {
     numSaves++;
   }
   catch (IOException e) {
-    e.printStackTrace();
   }
 }
