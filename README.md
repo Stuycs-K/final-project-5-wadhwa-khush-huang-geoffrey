@@ -4,7 +4,7 @@
 THIS DOCUMENT IS REQUIRED
 ## Group Info
 
-Members: Geoffrey Huang, Khush Wadhwa
+Members: Geoffrey Huang, Khush Wadhwa <br />
 Group Name: Double Exposure
 ## Overview
 
