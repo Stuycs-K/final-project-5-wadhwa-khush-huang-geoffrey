@@ -96,4 +96,4 @@ MacOS error is preventing me from running code. I will need to condense the imag
 
 ### 06/07/2024 - 06/09/2024
 
-Condensed the draw method. Pair programmed on call with Khush because computer broke.
+Condensed the draw method. Pair programmed on call with Khush because computer broke. Edited README and second prototype file.
