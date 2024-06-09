@@ -808,6 +808,21 @@
         },
         {
           "className": "SaveItemNode",
+          "path": "saves/1",
+          "type": "TRANSIENT"
+        },
+        {
+          "className": "SaveItemNode",
+          "path": "saves/2",
+          "type": "TRANSIENT"
+        },
+        {
+          "className": "SaveItemNode",
+          "path": "saves/3",
+          "type": "TRANSIENT"
+        },
+        {
+          "className": "SaveItemNode",
           "path": "saves/auto",
           "type": "TRANSIENT"
         }
@@ -830,6 +845,22 @@
       "className": "ButtonNode",
       "path": "Clear",
       "type": "TRANSIENT"
+    },
+    {
+      "className": "ButtonNode",
+      "path": "Update Save",
+      "type": "TRANSIENT"
+    },
+    {
+      "className": "ButtonNode",
+      "path": "Restore Save",
+      "type": "TRANSIENT"
+    },
+    {
+      "valueBoolean": false,
+      "className": "ToggleNode",
+      "path": "Paintbrush",
+      "type": "VALUE"
     },
     {
       "valueFloat": 0.0,
@@ -861,6 +892,64 @@
       "valueFloatPrecision": 0.01,
       "className": "SliderIntNode",
       "path": "Monochrome",
+      "type": "VALUE"
+    },
+    {
+      "hexString": "FF7FFFFF",
+      "children": [
+        {
+          "className": "ColorPreviewNode",
+          "path": "Brush Color/preview",
+          "type": "TRANSIENT"
+        },
+        {
+          "valueFloat": 0.5,
+          "currentPrecisionIndex": 2,
+          "valueFloatPrecision": 0.01,
+          "className": "HueNode",
+          "path": "Brush Color/hue",
+          "type": "VALUE"
+        },
+        {
+          "valueFloat": 0.5019608,
+          "currentPrecisionIndex": 2,
+          "valueFloatPrecision": 0.01,
+          "className": "SaturationNode",
+          "path": "Brush Color/sat",
+          "type": "VALUE"
+        },
+        {
+          "valueFloat": 1.0,
+          "currentPrecisionIndex": 2,
+          "valueFloatPrecision": 0.01,
+          "className": "BrightnessNode",
+          "path": "Brush Color/br",
+          "type": "VALUE"
+        },
+        {
+          "valueFloat": 1.0,
+          "currentPrecisionIndex": 2,
+          "valueFloatPrecision": 0.01,
+          "className": "AlphaNode",
+          "path": "Brush Color/alpha",
+          "type": "VALUE"
+        },
+        {
+          "className": "ColorPickerHexNode",
+          "path": "Brush Color/hex",
+          "type": "VALUE"
+        }
+      ],
+      "className": "ColorPickerFolderNode",
+      "path": "Brush Color",
+      "type": "FOLDER"
+    },
+    {
+      "valueFloat": 10.0,
+      "currentPrecisionIndex": 4,
+      "valueFloatPrecision": 1.0,
+      "className": "SliderNode",
+      "path": "Brush Size",
       "type": "VALUE"
     }
   ],
