@@ -48,7 +48,7 @@ public class PaintBrush {
     //  toEdit.pixels[i] = 0;//PImage.blendColor(pixels[i], c, BLEND);
     //}
     //toEdit.updatePixels();
-    destination = in.copy();
+    PImage destination = in.copy();
     destination.set(sx, sy, toEdit);
     return destination;
   }

@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
  //TO BE IMPLEMENTED IN APPROPRIATE STAGES
+ private PImage original;
  private PImage current;
  private PImage withTempChanges;
  private int imgX, imgY;
@@ -34,7 +35,7 @@ void setup() {
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
   sliders = new float[3];
   sliders[0] = gui.sliderInt("Exposure", 0, -100, 100);
-  sliders[1] = gui.slider("Contrast", 1, 1, 5);
+  sliders[1] = gui.slider("Contrast", 1.1, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
   myColor = gui.colorPicker("Brush Color", 0.5, 0.5, 0.5);
   gui.slider("Brush Size", 10, 0, 100);
@@ -49,11 +50,12 @@ void draw() {
     withTempChanges = null;
   }
   if (gui.button("Update Save")) {
-    current = withTempChanges;  
+    current = withTempChanges.copy();
+    original = current.copy();
     resetSliders();
   }
   if (gui.button("Restore Save")) {
-    withTempChanges = current;
+    current = original.copy();
     resetSliders();
   }
   
@@ -151,7 +153,7 @@ void mouseDragged() {
     System.out.println(inBoundsX + " " +inBoundsY);
     if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
       updatePaintbrush();
-      withTempChanges = brush.applyPaint(current, current, imgX, imgY);
+      current = brush.applyPaint(current, imgX, imgY);
       //try {
       //  Thread.sleep(100);
       //}
@@ -187,6 +189,7 @@ void fileSelected(File selection) {
   if (ext.equalsIgnoreCase(".png") || ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".jpeg") || ext.equalsIgnoreCase(".gif") || ext.equalsIgnoreCase(".tga")) {
     current = loadImage(selection.getPath().toString());
     calcImageCoords();
+    original = current.copy();
     background(100);
   }
   else {
