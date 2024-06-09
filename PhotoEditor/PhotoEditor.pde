@@ -19,7 +19,7 @@ private float[] sliders;
 private String[] sliderNames;
 private PaintBrush brush;
 private PickerColor myColor;
-float expL, conL, satL;
+private int numSaves;
 
 void setup() {
   size(1920, 1080, P2D);
@@ -38,10 +38,12 @@ void setup() {
   sliders[1] = gui.sliderInt("Contrast", 1, 1, 5);
   sliders[2] = gui.sliderInt("Saturation", 0, -100, 100);
   sliders[3] = gui.sliderInt("Monochrome", 0, 0, 1);
-
+  numSaves = 0;
+  
   myColor = gui.colorPicker("Brush Color", 0.5, 0.5, 1);
   gui.slider("Brush Size", 10, 0, 100);
   brush = new PaintBrush(color(myColor.hex));
+  
 }
 
 void draw() {
@@ -215,16 +217,16 @@ void saveImage() {
   current = withTempChanges.copy();
   resetSliders();
   image(current, imgX, imgY);
-  save("temp.jpeg");
+  save("temp.png");
   int w = current.width;
   int h = current.height;
-  File f = new File(sketchPath() + "/temp.jpeg");
-  System.out.println(f.getAbsolutePath());
+  File f = new File(sketchPath() + "/temp.png");
   try {
     BufferedImage scr = ImageIO.read(f);
     BufferedImage pic = scr.getSubimage(imgX, imgY, w, h);
-    File output = new File(sketchPath() + "/image.jpeg");
-    ImageIO.write(pic, "jpeg", output);
+    File output = new File(sketchPath() + "/image" + numSaves + ".png");
+    ImageIO.write(pic, "png", output);
+    numSaves++;
   }
   catch (IOException e) {
     e.printStackTrace();
