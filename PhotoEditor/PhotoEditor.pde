@@ -28,6 +28,7 @@ void setup() {
   gui.button("Export");
   gui.button("Clear");
   gui.button("Update Save");
+  gui.button("Restore Save");
   gui.toggle("Paintbrush");
   
   sliderNames = new String[] {"Exposure", "Contrast", "Saturation"};
@@ -51,6 +52,11 @@ void draw() {
     current = withTempChanges;  
     resetSliders();
   }
+  if (gui.button("Restore Save")) {
+    withTempChanges = current;
+    resetSliders();
+  }
+  
   for (int i = 0; i < sliders.length; i++) {
     if (gui.slider(sliderNames[i]) != sliders[i] && withTempChanges != null) {
       sliders[i] = gui.slider(sliderNames[i]);
@@ -145,7 +151,7 @@ void mouseDragged() {
     System.out.println(inBoundsX + " " +inBoundsY);
     if (gui.toggle("Paintbrush") && inBoundsX && inBoundsY)  {
       updatePaintbrush();
-      current = brush.applyPaint(current, current, imgX, imgY);
+      withTempChanges = brush.applyPaint(current, current, imgX, imgY);
       //try {
       //  Thread.sleep(100);
       //}
